@@ -25,6 +25,7 @@
 #' that are currently open.
 #' @param open_at A time when to check if businesses are open.
 #' @param attributes A character vector of business attributes to filter on.
+#' See \code{\link{SUPPORTED_BUSINESS_ATTRIBUTES}}.
 #' @param access_token A string giving an access token to authenticate the API
 #' call. See \code{\link{get_access_token}}.
 #' @return A data frame of business results.
@@ -50,7 +51,7 @@ business_search <- function(term, location, latitude = NULL, longitude = NULL, r
   categories = NULL, locale = "en_US", limit = 20, offset = 0,
   sort_by = c("best_match", "rating", "review_count", "distance"),
   price = 1:4, open_now = FALSE, open_at = NULL,
-  attributes = c("hot_and_new", "request_a_quote", "waitlist_reservation", "waitlist_reservation", "deals", "gender_neutral_restrooms"),
+  attributes = NULL,
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA)) {
   if(is.na(access_token)) {
     stop("No Yelp API access token was found. See ?get_access_token.")
@@ -77,7 +78,10 @@ business_search <- function(term, location, latitude = NULL, longitude = NULL, r
   } else {
     assert_is_a_bool(open_now)
   }
-  attributes <- match.arg(attributes)
+  if(!is.null(attributes)) {
+    attributes <- match.arg(attributes, SUPPORTED_BUSINESS_ATTRIBUTES, several.ok = TRUE)
+    attributes <- paste0(attributes, collapse = ",")
+  }
   response <- GET(
     "https://api.yelp.com/v3/businesses/search",
     config = add_headers(Authorization = paste("bearer", access_token)),

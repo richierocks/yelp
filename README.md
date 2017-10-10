@@ -46,28 +46,28 @@ To search for businesses close to a specific location, call `business_search()` 
 library(yelp)
 business_search("beauty salon", "los angeles")
 #> # A tibble: 20 x 24
-#>                                                                id
-#>                                                             <chr>
-#>  1                                  olympic-nails-beverly-hills-2
-#>  2                                       la-belle-vie-los-angeles
-#>  3              beautyholic-permanent-makeup-and-nail-los-angeles
-#>  4                                     ellie-and-sass-los-angeles
-#>  5                                      nails-by-amie-los-angeles
-#>  6                                         forty27-studio-burbank
-#>  7                                          apothic-salon-burbank
-#>  8                                            nail-45-los-angeles
-#>  9                                       hair-by-sima-los-angeles
-#> 10                                      ecospray-tanning-glendale
-#> 11                               american-barber-shop-los-angeles
-#> 12                                          rvm-twist-los-angeles
-#> 13                              hair-by-electra-blue-sherman-oaks
-#> 14                        foxtrot-lash-and-beauty-bar-los-angeles
-#> 15 francis-certified-brazilian-blowouts-color-and-fun-los-angeles
-#> 16                                  ocean-nail-spa-marina-del-rey
-#> 17                               worth-it-salon-spa-los-angeles-6
-#> 18                                 cocoaloveshair-redondo-beach-2
-#> 19                            the-color-bar-by-diine-montebello-2
-#> 20                                  create-hair-studio-montebello
+#>                                                     id
+#>                                                  <chr>
+#>  1                   arianna-hair-boutique-los-angeles
+#>  2                  hair-star-total-beauty-los-angeles
+#>  3                       kote-beauty-house-los-angeles
+#>  4              m-hair-and-beauty-salon-los-angeles-12
+#>  5                       katy-beauty-salon-los-angeles
+#>  6                       prado-hair-studio-los-angeles
+#>  7              beauty-secret-hair-salon-los-angeles-2
+#>  8                      atelier-by-tiffany-los-angeles
+#>  9                        the-avenue-salon-los-angeles
+#> 10                    olympia-beauty-salon-los-angeles
+#> 11     kim-sun-young-hair-and-beauty-salon-los-angeles
+#> 12              beauty-creations-the-salon-los-angeles
+#> 13                 stephanies-beauty-salon-los-angeles
+#> 14                         the-fig-salon-los-angeles-3
+#> 15                     ruthys-beauty-salon-los-angeles
+#> 16 adrianas-beauty-salon-and-barber-shop-los-angeles-2
+#> 17            paulas-chic-image-hair-salon-los-angeles
+#> 18                  be-glamorous-by-brenda-los-angeles
+#> 19                beautify-by-vickarobella-los-angeles
+#> 20                           industry-dtla-los-angeles
 #> # ... with 23 more variables: name <chr>, image_url <chr>,
 #> #   is_closed <lgl>, url <chr>, review_count <int>,
 #> #   category_aliases <list>, category_titles <list>, rating <dbl>,

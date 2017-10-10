@@ -364,3 +364,15 @@ SUPPORTED_CATEGORY_ALIASES <- c("3dprinting", "abruzzese", "absinthebars", "acai
   "xmasmarkets", "yakiniku", "yakitori", "yelpevents", "yoga",
   "youth_club", "yucatan", "yugoslav", "zapiekanka", "zipline",
   "zoos", "zorbing")
+
+#' Supported business attributes
+#'
+#' The allowed values of business attribute, as used by the business search
+#' \code{attribute} argument.
+#' @references See the attributes field of the business search documentation.
+#' \url{https://www.yelp.com/developers/documentation/v3/business_search}
+#' @examples
+#' SUPPORTED_BUSINESS_ATTRIBUTES
+#' @export
+SUPPORTED_BUSINESS_ATTRIBUTES <- c("hot_and_new", "request_a_quote", "waitlist_reservation",
+  "waitlist_reservation", "deals", "gender_neutral_restrooms")

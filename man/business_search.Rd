@@ -8,9 +8,7 @@ business_search(term, location, latitude = NULL, longitude = NULL,
   radius_m = 40000, categories = NULL, locale = "en_US", limit = 20,
   offset = 0, sort_by = c("best_match", "rating", "review_count",
   "distance"), price = 1:4, open_now = FALSE, open_at = NULL,
-  attributes = c("hot_and_new", "request_a_quote", "waitlist_reservation",
-  "waitlist_reservation", "deals", "gender_neutral_restrooms"),
-  access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA))
+  attributes = NULL, access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA))
 }
 \arguments{
 \item{term}{A string denoting the search term.}
@@ -49,7 +47,8 @@ that are currently open.}
 
 \item{open_at}{A time when to check if businesses are open.}
 
-\item{attributes}{A character vector of business attributes to filter on.}
+\item{attributes}{A character vector of business attributes to filter on.
+See \code{\link{SUPPORTED_BUSINESS_ATTRIBUTES}}.}
 
 \item{access_token}{A string giving an access token to authenticate the API
 call. See \code{\link{get_access_token}}.}
