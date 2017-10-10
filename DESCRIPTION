@@ -1,0 +1,18 @@
+Package: yelp
+Type: Package
+Title: Interface to the Yelp API
+Version: 0.0-1
+Author: Richard Cotton
+Maintainer: Richard Cotton <richierocks@gmail.com>
+Description: Use the Yelp API to search for businesses near a given location.
+License: Unlimited
+Encoding: UTF-8
+LazyData: true
+Imports:
+    assertive.numbers,
+    assertive.sets,
+    assertive.types,
+    httr,
+    purrr,
+    tibble
+RoxygenNote: 6.0.1

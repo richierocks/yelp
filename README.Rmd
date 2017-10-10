@@ -1,0 +1,62 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+# yelp
+
+This R package provides access to the [Yelp API, version 3](https://www.yelp.com/developers/documentation/v3).
+
+## Installation and setup
+
+To use this package, you must install it and get an access token for the API.
+
+### Package installation
+
+To install the package, you first need *devtool* installed.
+
+```{r, eval = FALSE}
+install.packages("devtools")
+```
+
+```{r, eval = FALSE}
+devtools::install_github("richierocks/yelp")
+```
+
+### Getting the client ID and client secret
+
+To gain access to the API, you have to [register with Yelp](https://www.yelp.com/signup), log in, and [create your own app](https://www.yelp.com/developers/v3/manage_app). This takes 5 to 10 minutes of pointing and clicking. It's reasonably self-explanatory, and there are more details on the [API Authentication](https://www.yelp.com/developers/documentation/v3/authentication) page.
+
+Once you have registered, make a note of your *client ID* and *client secret*.
+
+### Getting and storing an access token
+
+You use the client ID and client secret to get an access token.
+
+```{r, get_access_token, eval = FALSE}
+access_token <- get_access_token(client_id, client_secret)
+```
+
+This access token can be passed into individual calls to the API, or you can store it so the package will automatically find it. `store_access_token(access_token)` will store it for the R session, or you can use your operating system tools to set a `YELP.ACCESS_TOKEN` environment variable to store it permanently.
+
+## Usage
+
+To search for businesses close to a specific location, call `business_search()` with a string giving a search term and either a string describing a location or numbers giving latitude and longitude.
+
+```{r, business_search}
+library(yelp)
+business_search("pet beautician", "los angeles")
+```
+
+
