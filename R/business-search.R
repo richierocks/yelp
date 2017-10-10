@@ -117,8 +117,7 @@ business_search <- function(term, location, latitude = NULL, longitude = NULL, r
         zip_code = n2e(business$location$zip_code),
         state = n2e(business$location$state),
         country = n2e(business$location$country),
-        display_address1 = business$location$display_address[[1]],
-        display_address2 = business$location$display_address[[2]],
+        display_address = list(as.character(business$location$display_address)),
         phone = business$phone,
         display_phone = business$display_phone,
         distance_m = business$distance

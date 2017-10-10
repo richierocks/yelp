@@ -56,7 +56,7 @@ To search for businesses close to a specific location, call `business_search()` 
 
 ```{r, business_search}
 library(yelp)
-business_search("pet beautician", "los angeles")
+business_search("beauty salon", "los angeles")
 ```
 
 
