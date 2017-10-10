@@ -44,7 +44,7 @@ To search for businesses close to a specific location, call `business_search()` 
 
 ``` r
 library(yelp)
-business_search("beauty salon", "los angeles")
+(salons_in_la <- business_search("beauty salon", "los angeles"))
 #> # A tibble: 20 x 24
 #>                                                     id
 #>                                                  <chr>
@@ -68,11 +68,25 @@ business_search("beauty salon", "los angeles")
 #> 18                  be-glamorous-by-brenda-los-angeles
 #> 19                beautify-by-vickarobella-los-angeles
 #> 20                           industry-dtla-los-angeles
-#> # ... with 23 more variables: name <chr>, image_url <chr>,
-#> #   is_closed <lgl>, url <chr>, review_count <int>,
-#> #   category_aliases <list>, category_titles <list>, rating <dbl>,
-#> #   latitude <dbl>, longitude <dbl>, transactions <list>, price <chr>,
-#> #   address1 <chr>, address2 <chr>, address3 <chr>, city <chr>,
-#> #   zip_code <chr>, state <chr>, country <chr>, display_address <list>,
-#> #   phone <chr>, display_phone <chr>, distance_m <dbl>
+#> # ... with 23 more variables: name <chr>, rating <dbl>,
+#> #   review_count <int>, price <chr>, image_url <chr>, is_closed <lgl>,
+#> #   url <chr>, category_aliases <list>, category_titles <list>,
+#> #   latitude <dbl>, longitude <dbl>, distance_m <dbl>,
+#> #   transactions <list>, address1 <chr>, address2 <chr>, address3 <chr>,
+#> #   city <chr>, zip_code <chr>, state <chr>, country <chr>,
+#> #   display_address <list>, phone <chr>, display_phone <chr>
+```
+
+To find reviews of a business, you have to get the business ID from the `id` column of a business search and pass it to `reviews()`.
+
+``` r
+(reviews_of_arianna_hair_boutique <- reviews("arianna-hair-boutique-los-angeles"))
+#> # A tibble: 3 x 6
+#>   rating
+#>    <int>
+#> 1      5
+#> 2      5
+#> 3      3
+#> # ... with 5 more variables: text <chr>, time_created <chr>, url <chr>,
+#> #   user_image_url <chr>, user_name <chr>
 ```

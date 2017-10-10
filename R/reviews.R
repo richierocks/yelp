@@ -50,12 +50,12 @@ reviews <- function(business_id, locale = "en_US",
     results$reviews,
     function(review) {
       data_frame(
-        url = review$url,
-        text = review$text,
         rating = review$rating,
+        text = review$text,
+        time_created = review$time_created,
+        url = review$url,
         user_image_url = n2e(review$user$image_url),
-        user_name = review$user$name,
-        time_created = review$time_created
+        user_name = review$user$name
       )
     }
   )

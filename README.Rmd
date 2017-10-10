@@ -56,7 +56,14 @@ To search for businesses close to a specific location, call `business_search()` 
 
 ```{r, business_search}
 library(yelp)
-business_search("beauty salon", "los angeles")
+(salons_in_la <- business_search("beauty salon", "los angeles"))
 ```
+
+To find reviews of a business, you have to get the business ID from the `id` column of a business search and pass it to `reviews()`.
+
+```{r, reviews}
+(reviews_of_arianna_hair_boutique <- reviews("arianna-hair-boutique-los-angeles"))
+```
+
 
 

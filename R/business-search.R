@@ -103,17 +103,18 @@ business_search <- function(term, location, latitude = NULL, longitude = NULL, r
       data_frame(
         id = business$id,
         name = business$name,
+        rating = business$rating,
+        review_count = business$review_count,
+        price = business$price,
         image_url = business$image_url,
         is_closed = business$is_closed,
         url = business$url,
-        review_count = business$review_count,
         category_aliases = list(map_chr(business$categories, function(x) x$alias)),
         category_titles = list(map_chr(business$categories, function(x) x$title)),
-        rating = business$rating,
         latitude = business$coordinates$latitude,
         longitude = business$coordinates$longitude,
+        distance_m = business$distance,
         transactions = list(as.character(business$transactions)),
-        price = business$price,
         address1 = business$location$address1,
         address2 = n2e(business$location$address2),
         address3 = n2e(business$location$address3),
@@ -123,8 +124,7 @@ business_search <- function(term, location, latitude = NULL, longitude = NULL, r
         country = n2e(business$location$country),
         display_address = list(as.character(business$location$display_address)),
         phone = business$phone,
-        display_phone = business$display_phone,
-        distance_m = business$distance
+        display_phone = business$display_phone
       )
     }
   )
