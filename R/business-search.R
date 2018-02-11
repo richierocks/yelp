@@ -105,7 +105,7 @@ business_search <- function(term, location, latitude = NULL, longitude = NULL, r
         name = business$name,
         rating = business$rating,
         review_count = business$review_count,
-        price = business$price,
+        price = list(business$price),
         image_url = business$image_url,
         is_closed = business$is_closed,
         url = business$url,
