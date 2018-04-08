@@ -374,5 +374,5 @@ SUPPORTED_CATEGORY_ALIASES <- c("3dprinting", "abruzzese", "absinthebars", "acai
 #' @examples
 #' SUPPORTED_BUSINESS_ATTRIBUTES
 #' @export
-SUPPORTED_BUSINESS_ATTRIBUTES <- c("hot_and_new", "request_a_quote", "waitlist_reservation",
+SUPPORTED_BUSINESS_ATTRIBUTES <- c("hot_and_new", "request_a_quote",
   "waitlist_reservation", "deals", "gender_neutral_restrooms")

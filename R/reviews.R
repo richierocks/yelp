@@ -1,5 +1,7 @@
 #' Get reviews for a business
 #'
+#' Get the Yelp reviews associated with a business ID.
+#'
 #' @param business_id A string denoting a Yelp business ID, as returned by
 #' the business search API.
 #' @param locale A string naming the locale. See \code{\link{SUPPORTED_LOCALES}}

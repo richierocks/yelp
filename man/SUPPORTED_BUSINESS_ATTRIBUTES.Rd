@@ -4,7 +4,7 @@
 \name{SUPPORTED_BUSINESS_ATTRIBUTES}
 \alias{SUPPORTED_BUSINESS_ATTRIBUTES}
 \title{Supported business attributes}
-\format{An object of class \code{character} of length 6.}
+\format{An object of class \code{character} of length 5.}
 \usage{
 SUPPORTED_BUSINESS_ATTRIBUTES
 }

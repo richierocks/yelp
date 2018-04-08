@@ -22,7 +22,7 @@ A tibble with 6 columns. Each row corresponds to one review of the
 specified business.
 }
 \description{
-Get reviews for a business
+Get the Yelp reviews associated with a business ID.
 }
 \examples{
 

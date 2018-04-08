@@ -43,9 +43,6 @@
 #' @importFrom httr GET
 #' @importFrom httr stop_for_status
 #' @importFrom httr content
-#' @importFrom purrr map_df
-#' @importFrom purrr map_chr
-#' @importFrom tibble data_frame
 #' @export
 business_search <- function(term, location, latitude = NULL, longitude = NULL, radius_m = 40000,
   categories = NULL, locale = "en_US", limit = 20, offset = 0,
@@ -99,33 +96,6 @@ business_search <- function(term, location, latitude = NULL, longitude = NULL, r
   results <- content(response, as = "parsed")
   map_df(
     results$businesses,
-    function(business) {
-      data_frame(
-        id = business$id,
-        name = business$name,
-        rating = business$rating,
-        review_count = business$review_count,
-        price = business$price,
-        image_url = business$image_url,
-        is_closed = business$is_closed,
-        url = business$url,
-        category_aliases = list(map_chr(business$categories, function(x) x$alias)),
-        category_titles = list(map_chr(business$categories, function(x) x$title)),
-        latitude = business$coordinates$latitude,
-        longitude = business$coordinates$longitude,
-        distance_m = business$distance,
-        transactions = list(as.character(business$transactions)),
-        address1 = business$location$address1,
-        address2 = n2e(business$location$address2),
-        address3 = n2e(business$location$address3),
-        city = n2e(business$location$city),
-        zip_code = n2e(business$location$zip_code),
-        state = n2e(business$location$state),
-        country = n2e(business$location$country),
-        display_address = list(as.character(business$location$display_address)),
-        phone = business$phone,
-        display_phone = business$display_phone
-      )
-    }
+    business_object_to_dr_row
   )
 }

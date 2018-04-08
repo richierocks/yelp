@@ -48,7 +48,7 @@ You use the client ID and client secret to get an access token.
 access_token <- get_access_token(client_id, client_secret)
 ```
 
-This access token can be passed into individual calls to the API, or you can store it so the package will automatically find it. `store_access_token(access_token)` will store it for the R session, or you can use your operating system tools to set a `YELP.ACCESS_TOKEN` environment variable to store it permanently.
+This access token can be passed into individual calls to the API, or you can store it so the package will automatically find it. `store_access_token(access_token)` will store it for the R session, or you can use your operating system tools to set a `YELP_ACCESS_TOKEN` environment variable to store it permanently.
 
 ## Usage
 
@@ -56,13 +56,15 @@ To search for businesses close to a specific location, call `business_search()` 
 
 ```{r, business_search}
 library(yelp)
-(salons_in_la <- business_search("beauty salon", "los angeles"))
+salons_in_la <- business_search("beauty salon", "los angeles")
+glimpse(salons_in_la)
 ```
 
 To find reviews of a business, you have to get the business ID from the `id` column of a business search and pass it to `reviews()`.
 
 ```{r, reviews}
-(reviews_of_arianna_hair_boutique <- reviews("arianna-hair-boutique-los-angeles"))
+reviews_of_arianna_hair_boutique <- reviews("arianna-hair-boutique-los-angeles")
+glimpse(reviews_of_arianna_hair_boutique)
 ```
 
 
