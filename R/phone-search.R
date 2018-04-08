@@ -9,6 +9,7 @@
 #' @return A data frame of business results. Note that there may be more than
 #' one business returned, for example where multiple stores share a central
 #' phone number.
+#' @references \url{https://www.yelp.com/developers/documentation/v3/business_search_phone}
 #' @examples
 #' \donttest{
 #' ## Marked as don't test because an access token is needed

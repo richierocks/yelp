@@ -28,3 +28,6 @@ Finds businesses with a particular phone number.
   phone_search("+12127052000")
 }
 }
+\references{
+\url{https://www.yelp.com/developers/documentation/v3/business_search_phone}
+}

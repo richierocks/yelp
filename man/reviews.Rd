@@ -25,7 +25,6 @@ specified business.
 Get the Yelp reviews associated with a business ID.
 }
 \examples{
-
 \donttest{
 ## Marked as don't test because an access token is needed
 # First lookup businesses
@@ -36,4 +35,7 @@ reviews_of_chicago_theater <- reviews("chicago-theatre-chicago")
 if(interactive())
   View(reviews_of_chicago_theater) else reviews_of_chicago_theater
 }
+}
+\references{
+\url{https://www.yelp.com/developers/documentation/v3/business_reviews}
 }

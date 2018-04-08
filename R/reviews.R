@@ -10,8 +10,8 @@
 #' call. See \code{\link{get_access_token}}.
 #' @return A tibble with 6 columns. Each row corresponds to one review of the
 #' specified business.
+#' @references \url{https://www.yelp.com/developers/documentation/v3/business_reviews}
 #' @examples
-#'
 #' \donttest{
 #' ## Marked as don't test because an access token is needed
 #' # First lookup businesses

@@ -67,5 +67,5 @@ if(interactive()) View(delis_in_queens) else delis_in_queens
 }
 }
 \references{
-https://www.yelp.com/developers/documentation/v3/business_search
+\url{https://www.yelp.com/developers/documentation/v3/business_search}
 }

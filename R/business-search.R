@@ -29,7 +29,7 @@
 #' @param access_token A string giving an access token to authenticate the API
 #' call. See \code{\link{get_access_token}}.
 #' @return A data frame of business results.
-#' @references https://www.yelp.com/developers/documentation/v3/business_search
+#' @references \url{https://www.yelp.com/developers/documentation/v3/business_search}
 #' @examples
 #' \donttest{
 #' ## Marked as don't test because an access token is needed
