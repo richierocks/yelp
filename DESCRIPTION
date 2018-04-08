@@ -16,3 +16,11 @@ Imports:
     purrr,
     tibble
 RoxygenNote: 6.0.1
+Collate: 
+    'authentication.R'
+    'utils.R'
+    'business-search.R'
+    'constants.R'
+    'food-delivery-search.R'
+    'phone-search.R'
+    'reviews.R'

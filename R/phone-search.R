@@ -13,7 +13,8 @@
 #' @examples
 #' \donttest{
 #' ## Marked as don't test because an access token is needed
-#' phone_search("+12127052000")
+#' call_me <- phone_search("+12127052000")
+#' if(interactive()) View(call_me) else str(call_me)
 #' }
 #' @importFrom assertive.types assert_is_a_string
 #' @importFrom assertive.strings assert_all_are_matching_regex

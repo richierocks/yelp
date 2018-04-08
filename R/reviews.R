@@ -20,7 +20,7 @@
 #' theaters_in_chicago$id
 #' reviews_of_chicago_theater <- reviews("chicago-theatre-chicago")
 #' if(interactive())
-#'   View(reviews_of_chicago_theater) else reviews_of_chicago_theater
+#'   View(reviews_of_chicago_theater) else str(reviews_of_chicago_theater)
 #' }
 #' @importFrom assertive.types assert_is_a_string
 #' @importFrom purrr map_df

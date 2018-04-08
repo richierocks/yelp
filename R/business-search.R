@@ -34,7 +34,7 @@
 #' \donttest{
 #' ## Marked as don't test because an access token is needed
 #' delis_in_queens <- business_search("deli", "Queens, New York")
-#' if(interactive()) View(delis_in_queens) else delis_in_queens
+#' if(interactive()) View(delis_in_queens) else str(delis_in_queens)
 #' }
 #' @importFrom assertive.numbers assert_all_are_in_closed_range
 #' @importFrom assertive.sets assert_is_subset
@@ -87,5 +87,5 @@ business_search <- function(term, location, latitude = NULL, longitude = NULL, r
     price = price, open_now = open_now,
     open_at = open_at, attributes = attributes
   )
-  map_df(results$businesses, business_object_to_dr_row)
+  map_df(results$businesses, business_object_to_df_row)
 }

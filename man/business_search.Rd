@@ -63,7 +63,7 @@ Use the Yelp business search API to find businesses close to a give location.
 \donttest{
 ## Marked as don't test because an access token is needed
 delis_in_queens <- business_search("deli", "Queens, New York")
-if(interactive()) View(delis_in_queens) else delis_in_queens
+if(interactive()) View(delis_in_queens) else str(delis_in_queens)
 }
 }
 \references{

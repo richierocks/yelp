@@ -25,7 +25,8 @@ Finds businesses with a particular phone number.
 \examples{
 \donttest{
 ## Marked as don't test because an access token is needed
-phone_search("+12127052000")
+call_me <- phone_search("+12127052000")
+if(interactive()) View(call_me) else str(call_me)
 }
 }
 \references{

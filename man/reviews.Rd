@@ -33,7 +33,7 @@ theaters_in_chicago <- business_search("theater", "chicago")
 theaters_in_chicago$id
 reviews_of_chicago_theater <- reviews("chicago-theatre-chicago")
 if(interactive())
-  View(reviews_of_chicago_theater) else reviews_of_chicago_theater
+  View(reviews_of_chicago_theater) else str(reviews_of_chicago_theater)
 }
 }
 \references{

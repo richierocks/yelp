@@ -9,10 +9,10 @@ null2na <- function(x) {
 
 #' Call the Yelp api
 #'
-#' @param endpoint A string descirbing the URL to access.
+#' @param endpoint A string describing the URL to access.
 #' @param access_token A string giving an access token to authenticate the API
 #' call. See \code{\link{get_access_token}}.
-#' @result A list. The exact contents depend upon the endpoint.
+#' @return A list. The exact contents depend upon the endpoint.
 #' @importFrom httr add_headers
 #' @importFrom httr GET
 #' @importFrom httr stop_for_status
