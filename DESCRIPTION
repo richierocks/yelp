@@ -19,6 +19,7 @@ RoxygenNote: 6.0.1
 Collate: 
     'authentication.R'
     'utils.R'
+    'autocomplete.R'
     'business-lookup.R'
     'business-search.R'
     'constants.R'

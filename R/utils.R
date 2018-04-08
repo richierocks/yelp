@@ -46,8 +46,12 @@ call_yelp_api <- function(endpoint, access_token, ...) {
   content(response, as = "parsed")
 }
 
+#' @param business A list.
+#' @param detailed Logical. Use FALSE for the business search and food
+#' delivery search, and TRUE for business lookup.
 #' @importFrom purrr map_chr
 #' @importFrom tibble data_frame
+#' @noRd
 business_object_to_df_row <- function(business, detailed = FALSE) {
   business_data <- data_frame(
     id = business$id,
@@ -96,7 +100,9 @@ business_object_to_df_row <- function(business, detailed = FALSE) {
   business_data
 }
 
+#' @param review A list, as returned by the review search API.
 #' @importFrom tibble data_frame
+#' @noRd
 review_object_to_df_row <- function(review) {
   data_frame(
     rating = review$rating,
@@ -107,3 +113,5 @@ review_object_to_df_row <- function(review) {
     user_name = review$user$name
   )
 }
+
+
