@@ -7,7 +7,28 @@ null2na <- function(x) {
   if(is.null(x)) NA_real_ else x
 }
 
-#' @importFrom purrr map_df
+#' Call the Yelp api
+#'
+#' @param endpoint A string descirbing the URL to access.
+#' @param access_token A string giving an access token to authenticate the API
+#' call. See \code{\link{get_access_token}}.
+#' @result A list. The exact contents depend upon the endpoint.
+#' @importFrom httr add_headers
+#' @importFrom httr GET
+#' @importFrom httr stop_for_status
+#' @importFrom httr content
+#' @noRd
+call_yelp_api <- function(endpoint, access_token, ...) {
+  query <- list(...)
+  response <- GET(
+    paste0("https://api.yelp.com/v3/", endpoint),
+    config = add_headers(Authorization = paste("bearer", access_token)),
+    query = query
+  )
+  stop_for_status(response)
+  content(response, as = "parsed")
+}
+
 #' @importFrom purrr map_chr
 #' @importFrom tibble data_frame
 business_object_to_df_row <- function(business) {
@@ -36,5 +57,17 @@ business_object_to_df_row <- function(business) {
     display_address = list(as.character(business$location$display_address)),
     phone = business$phone,
     display_phone = business$display_phone
+  )
+}
+
+#' @importFrom tibble data_frame
+review_object_to_df_row <- function(review) {
+  data_frame(
+    rating = review$rating,
+    text = review$text,
+    time_created = review$time_created,
+    url = review$url,
+    user_image_url = n2e(review$user$image_url),
+    user_name = review$user$name
   )
 }

@@ -39,10 +39,7 @@
 #' @importFrom assertive.numbers assert_all_are_in_closed_range
 #' @importFrom assertive.sets assert_is_subset
 #' @importFrom assertive.types assert_is_a_bool
-#' @importFrom httr add_headers
-#' @importFrom httr GET
-#' @importFrom httr stop_for_status
-#' @importFrom httr content
+#' @importFrom purrr map_df
 #' @export
 business_search <- function(term, location, latitude = NULL, longitude = NULL, radius_m = 40000,
   categories = NULL, locale = "en_US", limit = 20, offset = 0,
@@ -79,23 +76,16 @@ business_search <- function(term, location, latitude = NULL, longitude = NULL, r
     attributes <- match.arg(attributes, SUPPORTED_BUSINESS_ATTRIBUTES, several.ok = TRUE)
     attributes <- paste0(attributes, collapse = ",")
   }
-  response <- GET(
-    "https://api.yelp.com/v3/businesses/search",
-    config = add_headers(Authorization = paste("bearer", access_token)),
-    query = list(
-      term = term, location = location,
-      latitude = latitude, longitude = longitude,
-      radius = radius_m, categories = categories,
-      locale = locale, limit = limit,
-      offset = offset, sort_by = sort_by,
-      price = price, open_now = open_now,
-      open_at = open_at, attributes = attributes
-    )
+  results <- call_yelp_api(
+    "businesses/search",
+    access_token,
+    term = term, location = location,
+    latitude = latitude, longitude = longitude,
+    radius = radius_m, categories = categories,
+    locale = locale, limit = limit,
+    offset = offset, sort_by = sort_by,
+    price = price, open_now = open_now,
+    open_at = open_at, attributes = attributes
   )
-  stop_for_status(response)
-  results <- content(response, as = "parsed")
-  map_df(
-    results$businesses,
-    business_object_to_dr_row
-  )
+  map_df(results$businesses, business_object_to_dr_row)
 }

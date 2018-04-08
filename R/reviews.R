@@ -23,12 +23,7 @@
 #'   View(reviews_of_chicago_theater) else reviews_of_chicago_theater
 #' }
 #' @importFrom assertive.types assert_is_a_string
-#' @importFrom httr add_headers
-#' @importFrom httr GET
-#' @importFrom httr stop_for_status
-#' @importFrom httr content
 #' @importFrom purrr map_df
-#' @importFrom tibble data_frame
 #' @export
 reviews <- function(business_id, locale = "en_US",
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA)) {
@@ -41,25 +36,14 @@ reviews <- function(business_id, locale = "en_US",
     "https://api.yelp.com/v3/businesses/%s/reviews",
     business_id
   )
-  response <- GET(
+  results <- call_yelp_api(
     endpoint,
-    config = add_headers(Authorization = paste("bearer", access_token)),
-    query = list(locale = locale)
+    access_token,
+    locale = locale
   )
-  stop_for_status(response)
-  results <- content(response, as = "parsed")
   map_df(
     results$reviews,
-    function(review) {
-      data_frame(
-        rating = review$rating,
-        text = review$text,
-        time_created = review$time_created,
-        url = review$url,
-        user_image_url = n2e(review$user$image_url),
-        user_name = review$user$name
-      )
-    }
+    review_object_to_df_row
   )
 }
 

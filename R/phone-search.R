@@ -13,12 +13,11 @@
 #' @examples
 #' \donttest{
 #' ## Marked as don't test because an access token is needed
-#'   phone_search("+12127052000")
+#' phone_search("+12127052000")
 #' }
-#' @importFrom httr add_headers
-#' @importFrom httr GET
-#' @importFrom httr stop_for_status
-#' @importFrom httr content
+#' @importFrom assertive.types assert_is_a_string
+#' @importFrom assertive.strings assert_all_are_matching_regex
+#' @importFrom purrr map_df
 #' @export
 phone_search <- function(phone,
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA)) {
@@ -26,14 +25,13 @@ phone_search <- function(phone,
     stop("No Yelp API access token was found. See ?get_access_token.")
   }
   # Match START %R% PLUS %R% dgt(1, Inf) %R% END
-  assertive.strings::assert_all_are_matching_regex(phone, "^\\+\\d+$")
-  response <- GET(
-    "https://api.yelp.com/v3/businesses/search/phone",
-    config = add_headers(Authorization = paste("bearer", access_token)),
-    query = list(phone = phone)
+  assert_is_a_string(phone)
+  assert_all_are_matching_regex(phone, "^\\+\\d+$")
+  results <- call_yelp_api(
+    "search/phone",
+    access_token,
+    phone = phone
   )
-  stop_for_status(response)
-  results <- content(response, as = "parsed")
   map_df(results$businesses, business_object_to_df_row)
 }
 
