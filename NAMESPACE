@@ -3,6 +3,7 @@
 export(SUPPORTED_BUSINESS_ATTRIBUTES)
 export(SUPPORTED_CATEGORY_ALIASES)
 export(SUPPORTED_LOCALES)
+export(business_lookup)
 export(business_search)
 export(food_delivery_search)
 export(get_access_token)
