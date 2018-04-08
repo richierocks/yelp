@@ -47,9 +47,7 @@ business_search <- function(term, location, latitude = NULL, longitude = NULL, r
   price = 1:4, open_now = FALSE, open_at = NULL,
   attributes = NULL,
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA)) {
-  if(is.na(access_token)) {
-    stop("No Yelp API access token was found. See ?get_access_token.")
-  }
+  assert_has_access_token(access_token)
   if(!is.null(location)) {
     location <- paste0(location, collapse = "")
   } else {

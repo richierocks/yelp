@@ -7,6 +7,13 @@ null2na <- function(x) {
   if(is.null(x)) NA_real_ else x
 }
 
+assert_has_access_token <- function(access_token) {
+  if(is.na(access_token)) {
+    stop("No Yelp API access token was found. See ?get_access_token.")
+  }
+  invisible(access_token)
+}
+
 #' Call the Yelp api
 #'
 #' @param endpoint A string describing the URL to access.

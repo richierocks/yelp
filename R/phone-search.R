@@ -22,9 +22,7 @@
 #' @export
 phone_search <- function(phone,
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA)) {
-  if(is.na(access_token)) {
-    stop("No Yelp API access token was found. See ?get_access_token.")
-  }
+  assert_has_access_token(access_token)
   # Match START %R% PLUS %R% dgt(1, Inf) %R% END
   assert_is_a_string(phone)
   assert_all_are_matching_regex(phone, "^\\+\\d+$")
