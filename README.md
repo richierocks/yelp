@@ -197,8 +197,9 @@ There are some other functions with more niche usage.
 
 -   `phone_search()` lets you search for a business by phone number.
 -   `autocomplete()` takes a search term, and returns some related search terms that Yelp understands.
+-   `food_delivery_search()` lets you find businesses that will deliver food to a given location.
 
 Not yet implemented
 -------------------
 
-Several parts of the API aren't yet implemented in this package. In particular, none of the events API is implemented, nor is the transactions API. Business match doesn't work correctly.
+Several parts of the API aren't yet implemented in this package. In particular, none of the events API is implemented. Business match doesn't work correctly.
