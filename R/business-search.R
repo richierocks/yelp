@@ -87,3 +87,58 @@ business_search <- function(term, location, latitude = NULL, longitude = NULL, r
   )
   map_df(results$businesses, business_object_to_df_row)
 }
+
+
+#' @param business A list.
+#' @param detailed Logical. Use FALSE for the business search and food
+#' delivery search, and TRUE for business lookup.
+#' @importFrom purrr map_chr
+#' @importFrom tibble data_frame
+#' @noRd
+business_object_to_df_row <- function(business, detailed = FALSE) {
+  business_data <- data_frame(
+    id = business$id,
+    name = business$name,
+    rating = business$rating,
+    review_count = business$review_count,
+    price = null2empty(business$price),
+    image_url = business$image_url,
+    is_closed = business$is_closed,
+    url = business$url,
+    category_aliases = list(map_chr(business$categories, function(x) x$alias)),
+    category_titles = list(map_chr(business$categories, function(x) x$title)),
+    latitude = business$coordinates$latitude,
+    longitude = business$coordinates$longitude,
+    distance_m = null2na(business$distance),
+    transactions = list(as.character(business$transactions)),
+    address1 = business$location$address1,
+    address2 = null2empty(business$location$address2),
+    address3 = null2empty(business$location$address3),
+    city = null2empty(business$location$city),
+    zip_code = null2empty(business$location$zip_code),
+    state = null2empty(business$location$state),
+    country = null2empty(business$location$country),
+    display_address = list(as.character(business$location$display_address)),
+    phone = business$phone,
+    display_phone = business$display_phone
+  )
+  if(detailed) { # extra info, as returned by business_lookup()
+    business_data$photos <- list(business$photos)
+    business_data$is_claimed <- business$is_claimed
+    business_data$is_permanently_closed <- business$is_closed
+    business_data$opening_hours <- list(map_df(
+      # Unclear if there is a situation where there may be more than
+      # 1 hours element
+      business$hours[[1]]$open,
+      function(open) {
+        data_frame(
+          start_day = number2weekday(open$day),
+          start_time = open$start,
+          end_day = number2weekday(open$day + open$is_overnight),
+          end_time = open$end
+        )
+      }
+    ))
+  }
+  business_data
+}

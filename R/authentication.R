@@ -1,4 +1,3 @@
-library(httr)
 #' Get or store an access token
 #'
 #' \code{get_access_token} gets an access token for the API. To obtain the
@@ -9,7 +8,7 @@ library(httr)
 #' \code{store_access_token} stores the access token as an environment variable.
 #' @param client_id A string giving the Client ID.
 #' @param client_Secret A string giving the client secret.
-#' @return A string giving the access token.
+#' @return A 128 character string giving the access token.
 #' @references \url{https://www.yelp.com/developers/documentation/v3/authentication}
 #' @examples
 #' \dontrun{
@@ -45,4 +44,19 @@ get_access_token <- function(client_id, client_secret) {
 #' @export
 store_access_token <- function(access_token) {
   Sys.setenv(YELP_ACCESS_TOKEN = access_token)
+}
+
+#' Throw an error if the
+#' @importFrom assertive.types is_a_string
+assert_has_access_token <- function(access_token) {
+  if(is.na(access_token)) {
+    stop("No Yelp API access token was found. See ?get_access_token.")
+  }
+  if(!is_a_string(access_token)) {
+    stop("The Yelp API access token is not a string. See ?get_access_token.")
+  }
+  if(nchar(access_token) != 128L) {
+    stop("The Yelp API access token does not contain 128 characters. See ?get_access_token.")
+  }
+  invisible(access_token)
 }
