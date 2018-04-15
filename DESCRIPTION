@@ -11,6 +11,7 @@ LazyData: true
 Imports:
     assertive.numbers,
     assertive.sets,
+    assertive.strings,
     assertive.types,
     httr,
     purrr,

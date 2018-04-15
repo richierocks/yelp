@@ -36,8 +36,6 @@
 #' delis_in_queens <- business_search("deli", "Queens, New York")
 #' if(interactive()) View(delis_in_queens) else str(delis_in_queens)
 #' }
-#' @importFrom assertive.numbers assert_all_are_in_closed_range
-#' @importFrom assertive.sets assert_is_subset
 #' @importFrom assertive.types assert_is_a_bool
 #' @importFrom purrr map_df
 #' @export
@@ -49,31 +47,24 @@ business_search <- function(term, location, latitude = NULL, longitude = NULL, r
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA)) {
   assert_has_access_token(access_token)
   if(!is.null(location)) {
-    location <- paste0(location, collapse = "")
+    location <- parse_location(location)
   } else {
-    assert_all_are_in_closed_range(latitude, -90, 90)
-    assert_all_are_in_closed_range(longitude, -180, 180)
+    check_latitude(latitude, null_is_ok = FALSE)
+    check_longitude(longitude, null_is_ok = FALSE)
   }
-  radius_m <- as.integer(radius_m)
-  categories <- if(!is.null(categories)) {
-    categories <- match.arg(categories, SUPPORTED_CATEGORY_ALIASES, several.ok = TRUE)
-    categories <- paste0(categories, collapse = ",")
-  }
-  locale <- match.arg(locale, SUPPORTED_LOCALES)
-  assert_all_are_in_closed_range(limit, 0, 50)
+  radius_m <- parse_radius_m(radius_m)
+  categories <- parse_categories(categories)
+  locale <- parse_locale(locale)
+  check_limit(limit)
   sort_by <- match.arg(sort_by)
-  assert_is_subset(price, 1:4)
-  price <- paste0(price, collapse = ",")
+  price <- parse_price(price)
   if(!is.null(open_at)) {
     open_now <- NULL
-    open_at <- as.integer(as.POSIXct(open_at))
+    open_at <- to_unix_time(open_at)
   } else {
     assert_is_a_bool(open_now)
   }
-  if(!is.null(attributes)) {
-    attributes <- match.arg(attributes, SUPPORTED_BUSINESS_ATTRIBUTES, several.ok = TRUE)
-    attributes <- paste0(attributes, collapse = ",")
-  }
+  attributes <- parse_attributes(attributes)
   results <- call_yelp_api(
     "businesses/search",
     access_token,

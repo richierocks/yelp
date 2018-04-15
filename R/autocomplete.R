@@ -22,18 +22,13 @@
 #'   "sleep", latitude = 47.6, longitude = -122.33
 #' ))
 #' }
-#' @importFrom assertive.numbers assert_all_are_in_closed_range
 #' @export
 autocomplete <- function(text, latitude = NULL, longitude = NULL,
   locale = "en_US", access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA)) {
   assert_has_access_token(access_token)
-  if(!is.null(latitude)) {
-    assert_all_are_in_closed_range(latitude, -90, 90)
-  }
-  if(!is.null(longitude)) {
-    assert_all_are_in_closed_range(longitude, -180, 180)
-  }
-  locale <- match.arg(locale, SUPPORTED_LOCALES)
+  check_latitude(latitude)
+  check_longitude(longitude)
+  locale <- parse_locale(locale)
   results <- call_yelp_api(
     "autocomplete",
     access_token,

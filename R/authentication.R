@@ -15,14 +15,17 @@
 #' (access_token <- get_access_token())
 #' store_access_token(access_token)
 #' }
+#' @importFrom assertive.types assert_is_a_string
 #' @importFrom httr POST
 #' @importFrom httr stop_for_status
 #' @importFrom httr content
 #' @export
 get_access_token <- function(client_id, client_secret) {
+  assert_is_a_string(client_id)
   if(client_id == "") {
     stop("You need to provide a client ID.")
   }
+  assert_is_a_string(client_secret)
   if(client_secret == "") {
     stop("You need to provide a client secret.")
   }

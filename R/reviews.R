@@ -29,7 +29,7 @@ reviews <- function(business_id, locale = "en_US",
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA)) {
   assert_has_access_token(access_token)
   assert_is_a_string(business_id)
-  locale <- match.arg(locale, SUPPORTED_LOCALES)
+  locale <- parse_locale(locale)
   endpoint <- sprintf(
     "businesses/%s/reviews",
     business_id
@@ -39,10 +39,7 @@ reviews <- function(business_id, locale = "en_US",
     access_token,
     locale = locale
   )
-  map_df(
-    results$reviews,
-    review_object_to_df_row
-  )
+  map_df(results$reviews, review_object_to_df_row)
 }
 
 #' @param review A list, as returned by the review search API.

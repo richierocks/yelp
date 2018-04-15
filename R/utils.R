@@ -21,6 +21,8 @@ call_yelp_api <- function(endpoint, access_token, ...) {
 }
 
 
+# Fixup responses ---------------------------------------------------------
+
 # Convert NULL to empty character
 null2empty <- function(x) {
   if(is.null(x)) "" else x
@@ -40,4 +42,93 @@ number2weekday <- function(x) {
   )
 }
 
+# Fixup dates -------------------------------------------------------------
 
+to_unix_time <- function(x) {
+  as.integer(as.POSIXct(open_at))
+}
+
+# Check inputs ------------------------------------------------------------
+
+#' @importFrom assertive.numbers assert_all_are_in_closed_range
+check_latitude <- function(latitude, null_is_ok = TRUE) {
+  if(is.null(latitude) && null_is_ok) {
+    return()
+  }
+  assert_all_are_in_closed_range(latitude, -90, 90)
+}
+
+#' @importFrom assertive.numbers assert_all_are_whole_numbers
+#' @importFrom assertive.numbers assert_all_are_in_closed_range
+check_limit <- function(limit) {
+  assert_all_are_whole_numbers(limit, tol = 0)
+  assert_all_are_in_closed_range(limit, 0, 50)
+}
+
+#' @importFrom assertive.numbers assert_all_are_in_closed_range
+check_longitude <- function(longitude, null_is_ok = TRUE) {
+  if(is.null(longitude) && null_is_ok) {
+    return()
+  }
+  assert_all_are_in_closed_range(longitude, -180, 180)
+}
+
+#' @importFrom assertive.numbers assert_all_are_whole_numbers
+#' @importFrom assertive.numbers assert_all_are_in_closed_range
+check_offset <- function(offset) {
+  assert_all_are_whole_numbers(offset, tol = 0)
+  assert_all_are_non_negative(offset)
+}
+
+#' @importFrom assertive.types assert_is_a_string
+#' @importFrom assertive.strings assert_all_are_matching_regex
+check_phone <- function(phone) {
+  assert_is_a_string(phone)
+  # Match START %R% PLUS %R% dgt(1, Inf) %R% END
+  assert_all_are_matching_regex(phone, "^\\+\\d+$")
+}
+
+# Improve inputs ----------------------------------------------------------
+
+parse_attributes <- function(attributes) {
+  if(is.null(attributes)) {
+    return()
+  }
+  attributes <- match.arg(
+    attributes, SUPPORTED_BUSINESS_ATTRIBUTES, several.ok = TRUE
+  )
+  paste0(attributes, collapse = ",")
+}
+
+parse_categories <- function(categories) {
+  if(is.null(categories)) {
+    return()
+  }
+  categories <- match.arg(
+    categories, SUPPORTED_CATEGORY_ALIASES, several.ok = TRUE
+  )
+  paste0(categories, collapse = ",")
+}
+
+parse_locale <- function(locale) {
+  match.arg(locale, SUPPORTED_LOCALES)
+}
+
+parse_location <- function(location) {
+  if(is.null(location)) {
+    return()
+  }
+  paste0(location, collapse = ", ")
+}
+
+#' @importFrom assertive.sets assert_is_subset
+parse_price <- function(price) {
+  assert_is_subset(price, 1:4)
+  paste0(price, collapse = ",")
+}
+
+#' @importFrom assertive.numbers assert_all_are_in_closed_range
+parse_radius_m <- function(radius_m) {
+  radius_m <- as.integer(radius_m)
+  assert_all_are_in_closed_range(radius_m, 0, 40000)
+}

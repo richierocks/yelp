@@ -9,12 +9,13 @@
 #' its owner, and whether or not the business has been permanently closed.
 #' @examples
 #' business_lookup("jDPKMwOtvPA0lkqRwRvSJQ")
+#' @importFrom assertive.types assert_is_a_string
 #' @export
 business_lookup <- function(id, locale = "en_US",
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA)) {
   assert_has_access_token(access_token)
   assert_is_a_string(id)
-  locale <- match.arg(locale, SUPPORTED_LOCALES)
+  locale <- parse_locale(locale)
   results <- call_yelp_api(
     paste0("businesses/", id),
     access_token,

@@ -12,17 +12,16 @@
 #' lunchtime <- food_delivery_search("empire state building")
 #' if(interactive()) View(lunchtime) else str(lunchtime)
 #' }
-#' @importFrom assertive.numbers assert_all_are_in_closed_range
 #' @importFrom purrr map_df
 #' @export
 food_delivery_search <- function(location, latitude = NULL, longitude = NULL,
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA)) {
   assert_has_access_token(access_token)
   if(!is.null(location)) {
-    location <- paste0(location, collapse = "")
+    location <- parse_location(location)
   } else {
-    assert_all_are_in_closed_range(latitude, -90, 90)
-    assert_all_are_in_closed_range(longitude, -180, 180)
+    check_latitude(latitude, null_is_ok = FALSE)
+    check_longitude(longitude, null_is_ok = FALSE)
   }
   results <- call_yelp_api(
     "transactions/delivery/search",

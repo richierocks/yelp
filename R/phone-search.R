@@ -16,16 +16,12 @@
 #' call_me <- phone_search("+12127052000")
 #' if(interactive()) View(call_me) else str(call_me)
 #' }
-#' @importFrom assertive.types assert_is_a_string
-#' @importFrom assertive.strings assert_all_are_matching_regex
 #' @importFrom purrr map_df
 #' @export
 phone_search <- function(phone,
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA)) {
   assert_has_access_token(access_token)
-  # Match START %R% PLUS %R% dgt(1, Inf) %R% END
-  assert_is_a_string(phone)
-  assert_all_are_matching_regex(phone, "^\\+\\d+$")
+  check_phone(phone)
   results <- call_yelp_api(
     "search/phone",
     access_token,
