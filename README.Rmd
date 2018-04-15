@@ -10,13 +10,19 @@ output:
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "README-"
+  fig.path = "man/figures/README-"
 )
+```
+
+```{r, pkgload, echo = FALSE}
+for(pkg in c("yelp", "magrittr", "dplyr", "ggmap")) {
+  suppressPackageStartupMessages(library(pkg, quiet = TRUE, character.only = TRUE))
+}
 ```
 
 # yelp
 
-This R package provides access to the [Yelp API, version 3](https://www.yelp.com/developers/documentation/v3).
+This R package provides access to the [Yelp Fusion API, version 3](https://www.yelp.com/developers/documentation/v3).
 
 ## Installation and setup
 
@@ -24,14 +30,14 @@ To use this package, you must install it and get an access token for the API.
 
 ### Package installation
 
-To install the package, you first need *devtool* installed.
+To install the package, you first need *remotes* installed.
 
 ```{r, eval = FALSE}
-install.packages("devtools")
+install.packages("remotes")
 ```
 
 ```{r, eval = FALSE}
-devtools::install_github("richierocks/yelp")
+remotes::install_github("richierocks/yelp")
 ```
 
 ### Getting the client ID and client secret
@@ -50,22 +56,80 @@ access_token <- get_access_token(client_id, client_secret)
 
 This access token can be passed into individual calls to the API, or you can store it so the package will automatically find it. `store_access_token(access_token)` will store it for the R session, or you can use your operating system tools to set a `YELP_ACCESS_TOKEN` environment variable to store it permanently.
 
+### Join the Developer Beta program
+
+Some features such as business match and event search require you to sign up for the Yelp Developer Beta program. You can do this from the [Manage App](https://www.yelp.com/developers/v3/manage_app) page.
+
 ## Usage
 
-To search for businesses close to a specific location, call `business_search()` with a string giving a search term and either a string describing a location or numbers giving latitude and longitude.
+To search for businesses close to a specific location, call `business_search()` with a string giving a search term and either a string describing a location or numbers giving latitude and longitude.  The return value is a tibble (since it has a nicer print method for wider data frames) with one business per row.
 
 ```{r, business_search}
 library(yelp)
+library(dplyr)
 salons_in_la <- business_search("beauty salon", "los angeles")
 glimpse(salons_in_la)
 ```
 
-To find reviews of a business, you have to get the business ID from the `id` column of a business search and pass it to `reviews()`.
+The results include the longitude and latitude of each business, so you can use *ggmap* to plot their locations.
 
-```{r, reviews}
-reviews_of_arianna_hair_boutique <- reviews("arianna-hair-boutique-los-angeles")
-glimpse(reviews_of_arianna_hair_boutique)
+```{r, ggmap}
+library(ggmap)
+library(magrittr)
+la <- salons_in_la %$%
+  c(median(longitude), median(latitude))
+la_map <- get_map(la, zoom = 11)
+(map_plot_of_salons_in_la <- ggmap(la_map) + 
+  geom_point(aes(longitude, latitude), data = salons_in_la)
+)
 ```
 
+<!--
+
+![Map of Los Angeles, with businesses marked as points.](man/figures/README-ggmap-1.png)
+-->
+
+Once you have spotted an interesting business, make a note of the business ID from the `id` column as it is required as an argument for several of the other functions.
 
 
+```{r, business_id}
+arianna_hair_boutique_id <- salons_in_la %>% 
+  filter(name == "Arianna Hair Boutique") %>% 
+  pull(id)
+```
+
+You can use the business ID with the `business_lookup()` to get more detailed information about that business, including opening hours.
+
+```{r, business_lookup}
+arianna_hair_boutique_details <- business_lookup(arianna_hair_boutique_id)
+glimpse(arianna_hair_boutique_details)
+arianna_hair_boutique_details$opening_hours
+```
+
+You can also use `reviews()` to get reviews of that business.
+
+```{r, reviews}
+arianna_hair_boutique_reviews <- reviews(arianna_hair_boutique_id)
+glimpse(arianna_hair_boutique_reviews)
+```
+
+These can be used with the [*tidytext*](https://cran.r-project.org/web/packages/tidytext) package to perform a sentiment analysis.
+
+```{r, sentiment}
+library(tidytext)
+(arianna_hair_boutique_sentiments <- arianna_hair_boutique_reviews %>% 
+  select(id, rating, text) %>% 
+  unnest_tokens(word, text)%>% 
+  anti_join(get_stopwords(), by = "word") %>% 
+  inner_join(get_sentiments("bing"))
+)
+```
+
+There are some other functions with more niche usage. 
+
+- `phone_search()` lets you search for a business by phone number. 
+- `autocomplete()`
+
+## Not yet implemented
+
+Several parts of the API aren't yet implemented in this package. In particular, none of the events API is implemented, nor is the transactions API. Business match doesn't work correctly.

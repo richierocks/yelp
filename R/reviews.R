@@ -31,7 +31,7 @@ reviews <- function(business_id, locale = "en_US",
   assert_is_a_string(business_id)
   locale <- match.arg(locale, SUPPORTED_LOCALES)
   endpoint <- sprintf(
-    "https://api.yelp.com/v3/businesses/%s/reviews",
+    "businesses/%s/reviews",
     business_id
   )
   results <- call_yelp_api(
@@ -42,6 +42,21 @@ reviews <- function(business_id, locale = "en_US",
   map_df(
     results$reviews,
     review_object_to_df_row
+  )
+}
+
+#' @param review A list, as returned by the review search API.
+#' @importFrom tibble data_frame
+#' @noRd
+review_object_to_df_row <- function(review) {
+  data_frame(
+    id = review$id,
+    rating = review$rating,
+    text = review$text,
+    time_created = review$time_created,
+    url = review$url,
+    user_image_url = null2empty(review$user$image_url),
+    user_name = review$user$name
   )
 }
 

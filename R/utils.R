@@ -83,7 +83,7 @@ business_object_to_df_row <- function(business, detailed = FALSE) {
     business_data$photos <- list(business$photos)
     business_data$is_claimed <- business$is_claimed
     business_data$is_permanently_closed <- business$is_closed
-    busines_data$opening_hours <- map_df(
+    business_data$opening_hours <- list(map_df(
       # Unclear if there is a situation where there may be more than
       # 1 hours element
       business$hours[[1]]$open,
@@ -95,23 +95,9 @@ business_object_to_df_row <- function(business, detailed = FALSE) {
           end_time = open$end
         )
       }
-    )
+    ))
   }
   business_data
-}
-
-#' @param review A list, as returned by the review search API.
-#' @importFrom tibble data_frame
-#' @noRd
-review_object_to_df_row <- function(review) {
-  data_frame(
-    rating = review$rating,
-    text = review$text,
-    time_created = review$time_created,
-    url = review$url,
-    user_image_url = n2e(review$user$image_url),
-    user_name = review$user$name
-  )
 }
 
 

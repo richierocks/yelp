@@ -1,10 +1,10 @@
 Package: yelp
 Type: Package
-Title: Interface to the Yelp API
+Title: Interface to the Yelp Fusion API
 Version: 0.0-1
 Author: Richard Cotton
 Maintainer: Richard Cotton <richierocks@gmail.com>
-Description: Use the Yelp API to search for businesses near a given location.
+Description: Use the Yelp Fustion API to search for businesses near a given location.
 License: Unlimited
 Encoding: UTF-8
 LazyData: true
@@ -18,11 +18,12 @@ Imports:
 RoxygenNote: 6.0.1
 Collate: 
     'authentication.R'
+    'constants.R'
     'utils.R'
     'autocomplete.R'
     'business-lookup.R'
+    'business-match.R'
     'business-search.R'
-    'constants.R'
     'food-delivery-search.R'
     'phone-search.R'
     'reviews.R'
