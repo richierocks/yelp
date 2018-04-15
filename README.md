@@ -79,7 +79,7 @@ glimpse(salons_in_la)
 #> $ display_phone    <chr> "(213) 736-1890", "(562) 576-2301", "(323) 73...
 ```
 
-The results include the longitude and latitude of each business, so you can use *ggmap* to plot their locations.
+The results include the longitude and latitude of each business, so you can use [*ggmap*](https://cran.r-project.org/web/packages/ggmap) to plot their locations.
 
 ``` r
 library(ggmap)
@@ -178,7 +178,7 @@ These can be used with the [*tidytext*](https://cran.r-project.org/web/packages/
 library(tidytext)
 (arianna_hair_boutique_sentiments <- arianna_hair_boutique_reviews %>% 
   select(id, rating, text) %>% 
-  unnest_tokens(word, text)%>% 
+  unnest_tokens(word, text) %>% 
   anti_join(get_stopwords(), by = "word") %>% 
   inner_join(get_sentiments("bing"))
 )
@@ -196,7 +196,7 @@ library(tidytext)
 There are some other functions with more niche usage.
 
 -   `phone_search()` lets you search for a business by phone number.
--   `autocomplete()`
+-   `autocomplete()` takes a search term, and returns some related search terms that Yelp understands.
 
 Not yet implemented
 -------------------
