@@ -14,6 +14,8 @@ Imports:
     assertive.strings,
     assertive.types,
     httr,
+    lubridate,
+    magrittr,
     purrr,
     tibble
 RoxygenNote: 6.0.1

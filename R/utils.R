@@ -74,7 +74,7 @@ check_longitude <- function(longitude, null_is_ok = TRUE) {
 }
 
 #' @importFrom assertive.numbers assert_all_are_whole_numbers
-#' @importFrom assertive.numbers assert_all_are_in_closed_range
+#' @importFrom assertive.numbers assert_all_are_non_negative
 check_offset <- function(offset) {
   assert_all_are_whole_numbers(offset, tol = 0)
   assert_all_are_non_negative(offset)
@@ -108,6 +108,14 @@ parse_categories <- function(categories) {
     categories, SUPPORTED_CATEGORY_ALIASES, several.ok = TRUE
   )
   paste0(categories, collapse = ",")
+}
+
+#' importFrom assertive.types assert_is_a_bool
+parse_is_free <- function(is_free) {
+  assert_is_a_bool(is_free)
+  if(is.na(is_free)) {
+    return()
+  }
 }
 
 parse_locale <- function(locale) {
