@@ -15,7 +15,7 @@ store_access_token(access_token)
 \item{client_Secret}{A string giving the client secret.}
 }
 \value{
-A string giving the access token.
+A 128 character string giving the access token.
 }
 \description{
 \code{get_access_token} gets an access token for the API. To obtain the

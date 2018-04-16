@@ -25,6 +25,7 @@ Collate:
     'business-lookup.R'
     'business-match.R'
     'business-search.R'
+    'event-search.R'
     'food-delivery-search.R'
     'phone-search.R'
     'reviews.R'

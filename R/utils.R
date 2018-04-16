@@ -45,7 +45,7 @@ number2weekday <- function(x) {
 # Fixup dates -------------------------------------------------------------
 
 to_unix_time <- function(x) {
-  as.integer(as.POSIXct(open_at))
+  as.integer(as.POSIXct(x))
 }
 
 # Check inputs ------------------------------------------------------------
