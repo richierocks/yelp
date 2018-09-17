@@ -1,12 +1,12 @@
 old_token <- set_token()
 
 test_that(
-  "business_search() returns a data frame", {
-    tapas_in_madrid <- business_search("tapas", "Madrid, Spain")
-    expect_s3_class(tapas_in_madrid, "tbl_df")
-    expect_gte(nrow(tapas_in_madrid), 1L)
+  "food_delivery_search() returns a data frame", {
+    food_near_white_house <- food_delivery_search("white house")
+    expect_s3_class(food_near_white_house, "tbl_df")
+    expect_gte(nrow(food_near_white_house), 1L)
     expect_equal(
-      colnames(tapas_in_madrid),
+      colnames(food_near_white_house),
       c("id", "name", "rating", "review_count", "price", "image_url",
         "is_closed", "url", "category_aliases", "category_titles", "latitude",
         "longitude", "distance_m", "transactions", "address1", "address2",
@@ -14,7 +14,7 @@ test_that(
         "phone", "display_phone")
     )
     expect_equal(
-      vapply(tapas_in_madrid, class, character(1L), USE.NAMES = FALSE),
+      vapply(food_near_white_house, class, character(1L), USE.NAMES = FALSE),
       c("character", "character", "numeric", "integer", "character",
         "character", "logical", "character", "list", "list", "numeric",
         "numeric", "numeric", "list", "character", "character", "character",
