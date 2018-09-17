@@ -4,3 +4,4 @@
 ^README-.*\.png$
 CONTRIBUTING
 ^data-raw$
+.DS_store
