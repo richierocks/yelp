@@ -18,6 +18,9 @@ Required if you want business results, but can be \code{NULL} otherwise.}
 
 \item{locale}{A string naming the locale. See \code{\link{SUPPORTED_LOCALES}}
 for allowed values.}
+
+\item{access_token}{A string giving an access token to authenticate the API
+call. See \code{\link{get_access_token}}.}
 }
 \value{
 A list of three elements.

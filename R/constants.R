@@ -380,7 +380,7 @@ SUPPORTED_BUSINESS_ATTRIBUTES <- c("hot_and_new", "request_a_quote",
 #' ISO 3166-2 Codes
 #'
 #' All valid ISO 3166-2 state codes for each country.
-#' @references Euqal to \code{ISOcodes::ISO_3166_2$Code}. See
+#' @references Equal to \code{ISOcodes::ISO_3166_2$Code}. See
 #' \code{\link[ISOcodes]{ISO_3166}} for details.
 #' @examples
 #' ISO_3166_2_CODES
