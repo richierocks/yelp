@@ -57,7 +57,8 @@ event_search <- function(location = NULL, latitude = NULL, longitude = NULL,
     locale = locale, offset = offset, limit = limit,
     sort_by = sort_by, sort_on = sort_on,
     start_date = start_date, end_date = end_date,
-    is_free = is_free, location = location, radius = radius_m
+    is_free = is_free, location = location,
+    latitude = NULL, longitude = NULL, radius = radius_m
   )
   map_df(results$events, event_to_df_row)
 }
