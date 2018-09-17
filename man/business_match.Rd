@@ -4,10 +4,11 @@
 \alias{business_match}
 \title{Match a business}
 \usage{
-business_match(name, city, state, country, address1 = NULL, address2 = NULL,
-  address3 = NULL, latitude = NULL, longitude = NULL, phone = NULL,
-  zip_code = NULL, yelp_business_id = NULL, match_threshold = c("default",
-  "none"), access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA))
+business_match(name, city, state, country, address1 = NULL,
+  address2 = NULL, address3 = NULL, latitude = NULL,
+  longitude = NULL, phone = NULL, zip_code = NULL,
+  yelp_business_id = NULL, match_threshold = c("default", "none"),
+  access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA))
 }
 \arguments{
 \item{name}{A string giving the name of the business.}
