@@ -1,6 +1,7 @@
 library(testthat)
 library(yelp)
 
-test_check("yelp")
-
+if (identical(tolower(Sys.getenv("NOT_CRAN")), "true")) {
+  test_check("yelp")
+}
 
