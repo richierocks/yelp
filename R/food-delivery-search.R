@@ -5,6 +5,8 @@
 #' If this is not provided, then \code{latitude} and \code{longitude} are compulsory.
 #' @param latitude A number representing the latitude to search close to.
 #' @param longitude A number representing the longitude to search close to.
+#' @param access_token A string giving an access token to authenticate the API
+#' call. See \code{\link{get_access_token}}.
 #' @references \url{https://www.yelp.com/developers/documentation/v3/transaction_search}
 #' @examples
 #' \donttest{

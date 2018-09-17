@@ -15,7 +15,7 @@ All valid ISO 3166-2 state codes for each country.
 ISO_3166_2_CODES
 }
 \references{
-Euqal to \code{ISOcodes::ISO_3166_2$Code}. See
+Equal to \code{ISOcodes::ISO_3166_2$Code}. See
 \code{\link[ISOcodes]{ISO_3166}} for details.
 }
 \keyword{datasets}

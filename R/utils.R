@@ -51,6 +51,7 @@ to_unix_time <- function(x) {
 # Check inputs ------------------------------------------------------------
 
 #' @importFrom assertive.numbers assert_all_are_in_closed_range
+#' @noRd
 check_latitude <- function(latitude, null_is_ok = TRUE) {
   if(is.null(latitude) && null_is_ok) {
     return()
@@ -60,12 +61,14 @@ check_latitude <- function(latitude, null_is_ok = TRUE) {
 
 #' @importFrom assertive.numbers assert_all_are_whole_numbers
 #' @importFrom assertive.numbers assert_all_are_in_closed_range
+#' @noRd
 check_limit <- function(limit) {
   assert_all_are_whole_numbers(limit, tol = 0)
   assert_all_are_in_closed_range(limit, 0, 50)
 }
 
 #' @importFrom assertive.numbers assert_all_are_in_closed_range
+#' @noRd
 check_longitude <- function(longitude, null_is_ok = TRUE) {
   if(is.null(longitude) && null_is_ok) {
     return()
@@ -75,6 +78,7 @@ check_longitude <- function(longitude, null_is_ok = TRUE) {
 
 #' @importFrom assertive.numbers assert_all_are_whole_numbers
 #' @importFrom assertive.numbers assert_all_are_non_negative
+#' @noRd
 check_offset <- function(offset) {
   assert_all_are_whole_numbers(offset, tol = 0)
   assert_all_are_non_negative(offset)
@@ -82,6 +86,7 @@ check_offset <- function(offset) {
 
 #' @importFrom assertive.types assert_is_a_string
 #' @importFrom assertive.strings assert_all_are_matching_regex
+#' @noRd
 check_phone <- function(phone) {
   assert_is_a_string(phone)
   # Match START %R% PLUS %R% dgt(1, Inf) %R% END
@@ -110,7 +115,24 @@ parse_categories <- function(categories) {
   paste0(categories, collapse = ",")
 }
 
+#' @importFrom assertive.types assert_is_a_string
+#' @importFrom magrittr %>%
+#' @importFrom stats setNames
+#' @noRd
+parse_country_state <- function(country, state) {
+  assert_is_a_string(country)
+  country <- toupper(country)
+  assert_is_a_string(state)
+  state <- toupper(state)
+  # Need to check in form "country-state", but return individual components
+  country_state <- match.arg(paste(country, state, sep = "-"), ISO_3166_2_CODES)
+  strsplit(country_state, split = "-")[[1]] %>%
+    setNames(c("country", "state")) %>%
+    as.list()
+}
+
 #' importFrom assertive.types assert_is_a_bool
+#' @noRd
 parse_is_free <- function(is_free) {
   assert_is_a_bool(is_free)
   if(is.na(is_free)) {
@@ -130,12 +152,14 @@ parse_location <- function(location) {
 }
 
 #' @importFrom assertive.sets assert_is_subset
+#' @noRd
 parse_price <- function(price) {
   assert_is_subset(price, 1:4)
   paste0(price, collapse = ",")
 }
 
 #' @importFrom assertive.numbers assert_all_are_in_closed_range
+#' @noRd
 parse_radius_m <- function(radius_m) {
   radius_m <- as.integer(radius_m)
   assert_all_are_in_closed_range(radius_m, 0, 40000)

@@ -4,12 +4,18 @@
 \alias{business_lookup}
 \title{Look up a business by Yelp ID}
 \usage{
-business_lookup(id, locale = "en_US",
+business_lookup(yelp_business_id, locale = "en_US",
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA))
 }
 \arguments{
-\item{id}{A string describing the Yelp ID of a business, as returned by
+\item{yelp_business_id}{A string describing the Yelp ID of a business, as returned by
 \code{\link{business_search}}.}
+
+\item{locale}{A string naming the locale. See \code{\link{SUPPORTED_LOCALES}}
+for allowed values.}
+
+\item{access_token}{A string giving an access token to authenticate the API
+call. See \code{\link{get_access_token}}.}
 }
 \value{
 A data frame of detailed business information. In addition to the
@@ -21,5 +27,9 @@ its owner, and whether or not the business has been permanently closed.
 Look up a business by Yelp ID
 }
 \examples{
-business_lookup("jDPKMwOtvPA0lkqRwRvSJQ")
+\donttest{
+## Marked as don't test because an access token is needed
+ghostbusters <- business_lookup("jDPKMwOtvPA0lkqRwRvSJQ")
+if(interactive()) View(ghostbusters) else str(ghostbusters)
+}
 }

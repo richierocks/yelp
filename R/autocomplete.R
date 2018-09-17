@@ -8,6 +8,8 @@
 #' Required if you want business results, but can be \code{NULL} otherwise.
 #' @param locale A string naming the locale. See \code{\link{SUPPORTED_LOCALES}}
 #' for allowed values.
+#' @param access_token A string giving an access token to authenticate the API
+#' call. See \code{\link{get_access_token}}.
 #' @return A list of three elements.
 #' \describe{
 #' \item{terms}{A character vector of completion of the text itself}

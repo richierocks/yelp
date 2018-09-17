@@ -17,8 +17,9 @@ Imports:
     lubridate,
     magrittr,
     purrr,
+    stats,
     tibble
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
 Collate: 
     'authentication.R'
     'constants.R'
@@ -31,3 +32,5 @@ Collate:
     'food-delivery-search.R'
     'phone-search.R'
     'reviews.R'
+Suggests: 
+    testthat
