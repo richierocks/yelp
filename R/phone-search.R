@@ -23,7 +23,7 @@ phone_search <- function(phone,
   assert_has_access_token(access_token)
   check_phone(phone)
   results <- call_yelp_api(
-    "search/phone",
+    "businesses/search/phone",
     access_token,
     phone = phone
   )
