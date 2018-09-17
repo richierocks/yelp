@@ -19,18 +19,19 @@ Imports:
     purrr,
     stats,
     tibble
-RoxygenNote: 6.1.0
-Collate: 
-    'authentication.R'
-    'constants.R'
-    'utils.R'
-    'autocomplete.R'
-    'business-lookup.R'
-    'business-match.R'
-    'business-search.R'
-    'event-search.R'
-    'food-delivery-search.R'
-    'phone-search.R'
-    'reviews.R'
 Suggests: 
     testthat
+RoxygenNote: 6.1.0
+Collate:
+    utils.R
+    authentication.R
+    autocomplete.R
+    business-lookup.R
+    business-match.R
+    business-search.R
+    constants.R
+    event-search.R
+    featured-events.R
+    food-delivery-search.R
+    phone-search.R
+    reviews.R
