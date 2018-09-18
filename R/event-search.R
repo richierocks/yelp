@@ -25,9 +25,16 @@
 #' multiple searches).
 #' @param sort_on Should the return values be sorted by \code{"popularity"} or
 #' \code{"datetime_start"}?
-#' @param sort_by TODO
+#' @param sort_by Either \code{asc} for ascending order, or \code{desc} for
+#' descending order.
 #' @param access_token A string giving an access token to authenticate the API
 #' call. See \code{\link{get_access_token}}.
+#' @examples
+#' \donttest{
+#' ## Marked as don't test because an access token is needed
+#' events_on_broadway <- event_search("broadway, manhattan, new york")
+#' if(interactive()) View(events_on_broadway) else str(events_on_broadway)
+#' }
 #' @importFrom purrr map_df
 #' @export
 event_search <- function(location = NULL, latitude = NULL, longitude = NULL,
@@ -92,7 +99,7 @@ event_to_df_row <- function(event) {
     zip_code = null2empty(event$location$zip_code),
     state = null2empty(event$location$state),
     country = null2empty(event$location$country),
-    display_address = null2empty(event$location$display_address),
+    display_address = toString(event$location$display_address),
     cross_streets = null2empty(event$location$cross_streets)
   )
 }

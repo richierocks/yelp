@@ -56,3 +56,10 @@ call. See \code{\link{get_access_token}}.}
 Use the Yelp event search API to find events near a given location and in
 a given time range.
 }
+\examples{
+\donttest{
+## Marked as don't test because an access token is needed
+events_on_broadway <- event_search("broadway, manhattan, new york")
+if(interactive()) View(events_on_broadway) else str(events_on_broadway)
+}
+}

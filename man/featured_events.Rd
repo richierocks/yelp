@@ -5,7 +5,7 @@
 \title{Find featured events}
 \usage{
 featured_events(location = NULL, latitude = NULL, longitude = NULL,
-  access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA))
+  locale = "en_US", access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA))
 }
 \arguments{
 \item{location}{A string describing the location.}
@@ -19,6 +19,13 @@ call. See \code{\link{get_access_token}}.}
 }
 \description{
 List the featured events for a location, as curated by the Yelp staff.
+}
+\examples{
+\donttest{
+## Marked as don't test because an access token is needed
+the_only_show_in_town <- featured_events("broadway, manhattan, new york")
+if(interactive()) View(the_only_show_in_town) else str(the_only_show_in_town)
+}
 }
 \references{
 \url{https://www.yelp.com/developers/documentation/v3/event_search}
