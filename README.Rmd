@@ -62,7 +62,7 @@ Some features such as business match and event search require you to sign up for
 
 ### Set your locale
 
-By default, the package assumes that you are in the USA, and uses the locale `en_US`. You can override this for the session using `set_yelp_locale()`, or premanently by setting an environment variable named `YELP_LOCALE`.
+By default, the package assumes that you are in the USA, and uses the locale `en_US`. You can override this for the session using `set_yelp_locale()`, or permanently by setting an environment variable named `YELP_LOCALE`.
 
 ## Usage
 
