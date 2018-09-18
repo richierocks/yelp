@@ -26,7 +26,7 @@
 #' }
 #' @export
 autocomplete <- function(text, latitude = NULL, longitude = NULL,
-  locale = Sys.getenv("YELP_LOCALE", "en_US"), access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA)) {
+  locale = get_yelp_locale(), access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA)) {
   assert_has_access_token(access_token)
   check_latitude(latitude)
   check_longitude(longitude)

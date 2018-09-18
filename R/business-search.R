@@ -40,7 +40,7 @@
 #' @importFrom purrr map_df
 #' @export
 business_search <- function(term, location, latitude = NULL, longitude = NULL, radius_m = 40000,
-  categories = NULL, locale = Sys.getenv("YELP_LOCALE", "en_US"), limit = 20, offset = 0,
+  categories = NULL, locale = get_yelp_locale(), limit = 20, offset = 0,
   sort_by = c("best_match", "rating", "review_count", "distance"),
   price = 1:4, open_now = FALSE, open_at = NULL,
   attributes = NULL,

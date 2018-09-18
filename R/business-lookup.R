@@ -19,7 +19,7 @@
 #' }
 #' @importFrom assertive.types assert_is_a_string
 #' @export
-business_lookup <- function(yelp_business_id, locale = Sys.getenv("YELP_LOCALE", "en_US"),
+business_lookup <- function(yelp_business_id, locale = get_yelp_locale(),
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA)) {
   assert_has_access_token(access_token)
   assert_is_a_string(yelp_business_id)

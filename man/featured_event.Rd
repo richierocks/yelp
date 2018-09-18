@@ -5,7 +5,7 @@
 \title{Find featured events}
 \usage{
 featured_event(location = NULL, latitude = NULL, longitude = NULL,
-  locale = Sys.getenv("YELP_LOCALE", "en_US"),
+  locale = get_yelp_locale(),
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA))
 }
 \arguments{

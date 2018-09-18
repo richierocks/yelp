@@ -5,6 +5,7 @@
 #' @references Created via \code{data-raw/get-supported-locales.R}
 #' based on the values provided at
 #' \url{https://www.yelp.com/developers/documentation/v3/supported_locales}
+#' @seealso \code{\link{set_yelp_locale}}
 #' @examples
 #' SUPPORTED_LOCALES
 #' @export

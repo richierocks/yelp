@@ -30,7 +30,7 @@
 #' @importFrom assertive.types assert_is_a_string
 #' @importFrom purrr map_df
 #' @export
-reviews <- function(business_id, locale = Sys.getenv("YELP_LOCALE", "en_US"),
+reviews <- function(business_id, locale = get_yelp_locale(),
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA)) {
   assert_has_access_token(access_token)
   assert_is_a_string(business_id)

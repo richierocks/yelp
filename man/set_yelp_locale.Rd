@@ -2,22 +2,34 @@
 % Please edit documentation in R/locale.R
 \name{set_yelp_locale}
 \alias{set_yelp_locale}
-\title{Set a default locale}
+\alias{get_yelp_locale}
+\title{Get or set a default locale}
 \usage{
-set_yelp_locale(locale)
+set_yelp_locale(locale = "en_US")
+
+get_yelp_locale()
 }
 \arguments{
 \item{locale}{A string naming the locale. See \code{\link{SUPPORTED_LOCALES}}
 for allowed values.}
 }
 \value{
-Invoked for the side-effect of setting an environment variable to
-store the default locale. The previous value of this variable is invisibly
-returned.
+\code{set_yelp_locale} is invoked for the side-effect of setting an
+environment variable to store the default locale. The previous value of this
+variable is invisibly returned.
+\code{get_yelp_locale} gets the current yelp locale from the environment,
+defaulting to \code{"en_US"} if it has not been set.
 }
 \description{
-Sets a default locale for the R session.
+Gets or sets a default locale for the R session.
+}
+\details{
+The locale is stored in an environment variable named
+\code{YELP_LOCALE}.
 }
 \examples{
 set_yelp_locale("zh_HK")
+}
+\seealso{
+\code{\link{SUPPORTED_LOCALES}}
 }
