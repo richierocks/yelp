@@ -1,6 +1,4 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-    #> Warning: package 'dplyr' was built under R version 3.5.1
-
 yelp
 ====
 
