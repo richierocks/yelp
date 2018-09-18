@@ -4,6 +4,8 @@
 #' @param location A string describing the location.
 #' @param latitude A number representing the latitude to search close to.
 #' @param longitude A number representing the longitude to search close to.
+#' @param locale A string naming the locale. See \code{\link{SUPPORTED_LOCALES}}
+#' for allowed values.
 #' @param access_token A string giving an access token to authenticate the API
 #' call. See \code{\link{get_access_token}}.
 #' @return A data frame with 26 columns. Each row corresponds to one event.

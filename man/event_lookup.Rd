@@ -14,7 +14,11 @@ event_lookup(yelp_event_id, locale = get_yelp_locale(),
 \item{locale}{A string naming the locale. See \code{\link{SUPPORTED_LOCALES}}
 for allowed values.}
 
-\item{A}{data frame with 1 row and 26 columns.}
+\item{access_token}{A string giving an access token to authenticate the API
+call. See \code{\link{get_access_token}}.}
+}
+\value{
+A data frame with 1 row and 26 columns.
 }
 \description{
 Use the ID from a business search to return only details for that business.

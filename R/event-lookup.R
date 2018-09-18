@@ -5,7 +5,9 @@
 #' \code{\link{event_search}}.
 #' @param locale A string naming the locale. See \code{\link{SUPPORTED_LOCALES}}
 #' for allowed values.
-#' @param A data frame with 1 row and 26 columns.
+#' @param access_token A string giving an access token to authenticate the API
+#' call. See \code{\link{get_access_token}}.
+#' @return A data frame with 1 row and 26 columns.
 #' @examples
 #' \donttest{
 #' ## Marked as don't test because an access token is needed
