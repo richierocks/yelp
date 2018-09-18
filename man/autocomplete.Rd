@@ -5,7 +5,8 @@
 \title{Get autocompletion suggestions}
 \usage{
 autocomplete(text, latitude = NULL, longitude = NULL,
-  locale = "en_US", access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA))
+  locale = get_yelp_locale(),
+  access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA))
 }
 \arguments{
 \item{text}{A string to find completions for.}

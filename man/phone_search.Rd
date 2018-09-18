@@ -15,9 +15,10 @@ country code and consist of a plus sign followed by only digits, for example
 call. See \code{\link{get_access_token}}.}
 }
 \value{
-A data frame of business results. Note that there may be more than
-one business returned, for example where multiple stores share a central
-phone number.
+A data frame with 24 columns. Each row corresponds to one business.
+
+Note that there may be more than one business returned, for example where
+multiple stores share a central phone number.
 }
 \description{
 Finds businesses with a particular phone number.

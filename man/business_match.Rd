@@ -49,6 +49,9 @@ If you don't get any results, try setting this to \code{"none"}.}
 \item{access_token}{A string giving an access token to authenticate the API
 call. See \code{\link{get_access_token}}.}
 }
+\value{
+A data frame with 13 columns. Each row corresponds to one business.
+}
 \description{
 Find a business, when you have precise info like name and address.
 }

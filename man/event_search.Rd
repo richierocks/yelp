@@ -7,8 +7,9 @@
 event_search(location = NULL, latitude = NULL, longitude = NULL,
   radius_m = 40000, datetime_start = Sys.time(),
   datetime_end = datetime_start + lubridate::ddays(7), is_free = NA,
-  categories = NULL, locale = "en_US", limit = 50L, offset = 0L,
-  sort_on = c("popularity", "time_start"), sort_by = c("desc", "asc"),
+  categories = NULL, locale = get_yelp_locale(), limit = 50L,
+  offset = 0L, sort_on = c("popularity", "time_start"),
+  sort_by = c("desc", "asc"),
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA))
 }
 \arguments{
@@ -47,12 +48,23 @@ multiple searches).}
 \item{sort_on}{Should the return values be sorted by \code{"popularity"} or
 \code{"datetime_start"}?}
 
-\item{sort_by}{TODO}
+\item{sort_by}{Either \code{asc} for ascending order, or \code{desc} for
+descending order.}
 
 \item{access_token}{A string giving an access token to authenticate the API
 call. See \code{\link{get_access_token}}.}
 }
+\value{
+A data frame with 26 columns. Each row corresponds to one event.
+}
 \description{
 Use the Yelp event search API to find events near a given location and in
 a given time range.
+}
+\examples{
+\donttest{
+## Marked as don't test because an access token is needed
+events_in_houston <- event_search("houston")
+if(interactive()) View(events_in_houston) else str(events_in_houston)
+}
 }

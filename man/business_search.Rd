@@ -5,7 +5,7 @@
 \title{Search for businesses}
 \usage{
 business_search(term, location, latitude = NULL, longitude = NULL,
-  radius_m = 40000, categories = NULL, locale = "en_US",
+  radius_m = 40000, categories = NULL, locale = get_yelp_locale(),
   limit = 20, offset = 0, sort_by = c("best_match", "rating",
   "review_count", "distance"), price = 1:4, open_now = FALSE,
   open_at = NULL, attributes = NULL,
@@ -55,7 +55,7 @@ See \code{\link{SUPPORTED_BUSINESS_ATTRIBUTES}}.}
 call. See \code{\link{get_access_token}}.}
 }
 \value{
-A data frame of business results.
+A data frame with 24 columns. Each row corresponds to one business.
 }
 \description{
 Use the Yelp business search API to find businesses close to a give location.

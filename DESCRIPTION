@@ -1,7 +1,7 @@
 Package: yelp
 Type: Package
 Title: Interface to the Yelp Fusion API
-Version: 0.0-1
+Version: 0.0-2
 Author: Richard Cotton
 Maintainer: Richard Cotton <richierocks@gmail.com>
 Description: Use the Yelp Fustion API to search for businesses near a given location.
@@ -19,18 +19,22 @@ Imports:
     purrr,
     stats,
     tibble
-RoxygenNote: 6.1.0
-Collate: 
-    'authentication.R'
-    'constants.R'
-    'utils.R'
-    'autocomplete.R'
-    'business-lookup.R'
-    'business-match.R'
-    'business-search.R'
-    'event-search.R'
-    'food-delivery-search.R'
-    'phone-search.R'
-    'reviews.R'
 Suggests: 
     testthat
+RoxygenNote: 6.1.0
+Collate:
+    utils.R
+    authentication.R
+    locale.R
+    autocomplete.R
+    business-lookup.R
+    business-match.R
+    business-search.R
+    categories.R
+    constants.R
+    event-lookup.R
+    event-search.R
+    featured-events.R
+    food-delivery-search.R
+    phone-search.R
+    reviews.R

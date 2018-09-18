@@ -6,9 +6,10 @@
 #' "+1234567890".
 #' @param access_token A string giving an access token to authenticate the API
 #' call. See \code{\link{get_access_token}}.
-#' @return A data frame of business results. Note that there may be more than
-#' one business returned, for example where multiple stores share a central
-#' phone number.
+#' @return A data frame with 24 columns. Each row corresponds to one business.
+#'
+#' Note that there may be more than one business returned, for example where
+#' multiple stores share a central phone number.
 #' @references \url{https://www.yelp.com/developers/documentation/v3/business_search_phone}
 #' @examples
 #' \donttest{
@@ -23,7 +24,7 @@ phone_search <- function(phone,
   assert_has_access_token(access_token)
   check_phone(phone)
   results <- call_yelp_api(
-    "search/phone",
+    "businesses/search/phone",
     access_token,
     phone = phone
   )

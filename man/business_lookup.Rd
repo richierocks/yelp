@@ -4,12 +4,12 @@
 \alias{business_lookup}
 \title{Look up a business by Yelp ID}
 \usage{
-business_lookup(yelp_business_id, locale = "en_US",
+business_lookup(yelp_business_id, locale = get_yelp_locale(),
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA))
 }
 \arguments{
-\item{yelp_business_id}{A string describing the Yelp ID of a business, as returned by
-\code{\link{business_search}}.}
+\item{yelp_business_id}{A string describing the Yelp ID of a business, as
+returned by \code{\link{business_search}}.}
 
 \item{locale}{A string naming the locale. See \code{\link{SUPPORTED_LOCALES}}
 for allowed values.}
@@ -18,13 +18,14 @@ for allowed values.}
 call. See \code{\link{get_access_token}}.}
 }
 \value{
-A data frame of detailed business information. In addition to the
-fields provided by the business search, you also get opening hours,
-URLs of up to 3 photos, whether or not the business has been claimed by
-its owner, and whether or not the business has been permanently closed.
+A data frame with 28 columns. Each row corresponds to one business.
+In addition to the fields provided by the business search, you also get
+opening hours, URLs of up to 3 photos, whether or not the business has been
+claimed by its owner, and whether or not the business has been permanently
+closed.
 }
 \description{
-Look up a business by Yelp ID
+Use the ID from a business search to get more details on that business.
 }
 \examples{
 \donttest{

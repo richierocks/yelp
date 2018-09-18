@@ -25,15 +25,23 @@
 #' multiple searches).
 #' @param sort_on Should the return values be sorted by \code{"popularity"} or
 #' \code{"datetime_start"}?
-#' @param sort_by TODO
+#' @param sort_by Either \code{asc} for ascending order, or \code{desc} for
+#' descending order.
 #' @param access_token A string giving an access token to authenticate the API
 #' call. See \code{\link{get_access_token}}.
+#' @return A data frame with 26 columns. Each row corresponds to one event.
+#' @examples
+#' \donttest{
+#' ## Marked as don't test because an access token is needed
+#' events_in_houston <- event_search("houston")
+#' if(interactive()) View(events_in_houston) else str(events_in_houston)
+#' }
 #' @importFrom purrr map_df
 #' @export
 event_search <- function(location = NULL, latitude = NULL, longitude = NULL,
   radius_m = 40000, datetime_start = Sys.time(),
   datetime_end = datetime_start + lubridate::ddays(7), is_free = NA,
-  categories = NULL, locale = "en_US", limit = 50L, offset = 0L,
+  categories = NULL, locale = get_yelp_locale(), limit = 50L, offset = 0L,
   sort_on = c("popularity", "time_start"), sort_by = c("desc", "asc"),
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA)) {
   # excluded_events arg not yet supported because the syntax isn't clear.
@@ -57,7 +65,8 @@ event_search <- function(location = NULL, latitude = NULL, longitude = NULL,
     locale = locale, offset = offset, limit = limit,
     sort_by = sort_by, sort_on = sort_on,
     start_date = start_date, end_date = end_date,
-    is_free = is_free, location = location, radius = radius_m
+    is_free = is_free, location = location,
+    latitude = NULL, longitude = NULL, radius = radius_m
   )
   map_df(results$events, event_to_df_row)
 }
@@ -91,7 +100,7 @@ event_to_df_row <- function(event) {
     zip_code = null2empty(event$location$zip_code),
     state = null2empty(event$location$state),
     country = null2empty(event$location$country),
-    display_address = null2empty(event$location$display_address),
+    display_address = toString(event$location$display_address),
     cross_streets = null2empty(event$location$cross_streets)
   )
 }

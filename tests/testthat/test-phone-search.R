@@ -1,10 +1,10 @@
-context("business_search")
+context("phone_search")
 
 old_token <- set_token()
 old_locale <- set_yelp_locale()
 
 test_results_have_correct_form(
-  business_search("tapas", "Madrid, Spain"),
+  phone_search("+12069052100"),
   c("id", "alias", "name", "rating", "review_count", "price", "image_url",
     "is_closed", "url", "category_aliases", "category_titles", "latitude",
     "longitude", "distance_m", "transactions", "address1", "address2",

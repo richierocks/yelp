@@ -8,7 +8,7 @@
 #' for allowed values.
 #' @param access_token A string giving an access token to authenticate the API
 #' call. See \code{\link{get_access_token}}.
-#' @return A tibble with 6 columns. Each row corresponds to one review of the
+#' @return A data frame with 6 columns. Each row corresponds to one review of the
 #' specified business.
 #' @references \url{https://www.yelp.com/developers/documentation/v3/business_reviews}
 #' @examples
@@ -16,16 +16,21 @@
 #' ## Marked as don't test because an access token is needed
 #' # First lookup businesses
 #' theaters_in_chicago <- business_search("theater", "chicago")
-#' # Examine the ID column to get the business ID
-#' theaters_in_chicago$id
-#' reviews_of_chicago_theater <- reviews("chicago-theatre-chicago")
+#' # Get the reviews using the business ID
+#' reviews_of_chicago_theater_id <- reviews(theaters_in_chicago$id[1L])
+#' # ...or the alias
+#' reviews_of_chicago_theater_alias <- reviews(theaters_in_chicago$alias[1L])
+#' identical(
+#'   reviews_of_chicago_theater_id,
+#'   reviews_of_chicago_theater_alias
+#' )
 #' if(interactive())
-#'   View(reviews_of_chicago_theater) else str(reviews_of_chicago_theater)
+#'   View(reviews_of_chicago_theater_id) else str(reviews_of_chicago_theater_id)
 #' }
 #' @importFrom assertive.types assert_is_a_string
 #' @importFrom purrr map_df
 #' @export
-reviews <- function(business_id, locale = "en_US",
+reviews <- function(business_id, locale = get_yelp_locale(),
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA)) {
   assert_has_access_token(access_token)
   assert_is_a_string(business_id)

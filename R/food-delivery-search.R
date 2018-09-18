@@ -7,6 +7,7 @@
 #' @param longitude A number representing the longitude to search close to.
 #' @param access_token A string giving an access token to authenticate the API
 #' call. See \code{\link{get_access_token}}.
+#' @return A data frame with 24 columns. Each row corresponds to one business.
 #' @references \url{https://www.yelp.com/developers/documentation/v3/transaction_search}
 #' @examples
 #' \donttest{

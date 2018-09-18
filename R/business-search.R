@@ -28,7 +28,7 @@
 #' See \code{\link{SUPPORTED_BUSINESS_ATTRIBUTES}}.
 #' @param access_token A string giving an access token to authenticate the API
 #' call. See \code{\link{get_access_token}}.
-#' @return A data frame of business results.
+#' @return A data frame with 24 columns. Each row corresponds to one business.
 #' @references \url{https://www.yelp.com/developers/documentation/v3/business_search}
 #' @examples
 #' \donttest{
@@ -40,7 +40,7 @@
 #' @importFrom purrr map_df
 #' @export
 business_search <- function(term, location, latitude = NULL, longitude = NULL, radius_m = 40000,
-  categories = NULL, locale = "en_US", limit = 20, offset = 0,
+  categories = NULL, locale = get_yelp_locale(), limit = 20, offset = 0,
   sort_by = c("best_match", "rating", "review_count", "distance"),
   price = 1:4, open_now = FALSE, open_at = NULL,
   attributes = NULL,
@@ -89,6 +89,7 @@ business_search <- function(term, location, latitude = NULL, longitude = NULL, r
 business_object_to_df_row <- function(business, detailed = FALSE) {
   business_data <- data_frame(
     id = business$id,
+    alias = business$alias,
     name = business$name,
     rating = business$rating,
     review_count = business$review_count,
@@ -109,7 +110,7 @@ business_object_to_df_row <- function(business, detailed = FALSE) {
     zip_code = null2empty(business$location$zip_code),
     state = null2empty(business$location$state),
     country = null2empty(business$location$country),
-    display_address = list(as.character(business$location$display_address)),
+    display_address = toString(business$location$display_address),
     phone = business$phone,
     display_phone = business$display_phone
   )

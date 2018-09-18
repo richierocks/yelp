@@ -18,6 +18,9 @@ If this is not provided, then \code{latitude} and \code{longitude} are compulsor
 \item{access_token}{A string giving an access token to authenticate the API
 call. See \code{\link{get_access_token}}.}
 }
+\value{
+A data frame with 24 columns. Each row corresponds to one business.
+}
 \description{
 Find services that deliver food to a specified location in the USA.
 }

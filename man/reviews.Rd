@@ -4,7 +4,7 @@
 \alias{reviews}
 \title{Get reviews for a business}
 \usage{
-reviews(business_id, locale = "en_US",
+reviews(business_id, locale = get_yelp_locale(),
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA))
 }
 \arguments{
@@ -18,7 +18,7 @@ for allowed values.}
 call. See \code{\link{get_access_token}}.}
 }
 \value{
-A tibble with 6 columns. Each row corresponds to one review of the
+A data frame with 6 columns. Each row corresponds to one review of the
 specified business.
 }
 \description{
@@ -29,11 +29,16 @@ Get the Yelp reviews associated with a business ID.
 ## Marked as don't test because an access token is needed
 # First lookup businesses
 theaters_in_chicago <- business_search("theater", "chicago")
-# Examine the ID column to get the business ID
-theaters_in_chicago$id
-reviews_of_chicago_theater <- reviews("chicago-theatre-chicago")
+# Get the reviews using the business ID
+reviews_of_chicago_theater_id <- reviews(theaters_in_chicago$id[1L])
+# ...or the alias
+reviews_of_chicago_theater_alias <- reviews(theaters_in_chicago$alias[1L])
+identical(
+  reviews_of_chicago_theater_id,
+  reviews_of_chicago_theater_alias
+)
 if(interactive())
-  View(reviews_of_chicago_theater) else str(reviews_of_chicago_theater)
+  View(reviews_of_chicago_theater_id) else str(reviews_of_chicago_theater_id)
 }
 }
 \references{

@@ -1,10 +1,10 @@
-context("business_search")
+context("food_delivery_search")
 
 old_token <- set_token()
 old_locale <- set_yelp_locale()
 
 test_results_have_correct_form(
-  business_search("tapas", "Madrid, Spain"),
+  food_delivery_search("white house"),
   c("id", "alias", "name", "rating", "review_count", "price", "image_url",
     "is_closed", "url", "category_aliases", "category_titles", "latitude",
     "longitude", "distance_m", "transactions", "address1", "address2",
