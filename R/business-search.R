@@ -28,7 +28,7 @@
 #' See \code{\link{SUPPORTED_BUSINESS_ATTRIBUTES}}.
 #' @param access_token A string giving an access token to authenticate the API
 #' call. See \code{\link{get_access_token}}.
-#' @return A data frame of business results.
+#' @return A data frame with 24 columns. Each row corresponds to one business.
 #' @references \url{https://www.yelp.com/developers/documentation/v3/business_search}
 #' @examples
 #' \donttest{

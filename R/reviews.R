@@ -8,7 +8,7 @@
 #' for allowed values.
 #' @param access_token A string giving an access token to authenticate the API
 #' call. See \code{\link{get_access_token}}.
-#' @return A tibble with 6 columns. Each row corresponds to one review of the
+#' @return A data frame with 6 columns. Each row corresponds to one review of the
 #' specified business.
 #' @references \url{https://www.yelp.com/developers/documentation/v3/business_reviews}
 #' @examples

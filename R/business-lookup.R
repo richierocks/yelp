@@ -6,10 +6,11 @@
 #' for allowed values.
 #' @param access_token A string giving an access token to authenticate the API
 #' call. See \code{\link{get_access_token}}.
-#' @return A data frame of detailed business information. In addition to the
-#' fields provided by the business search, you also get opening hours,
-#' URLs of up to 3 photos, whether or not the business has been claimed by
-#' its owner, and whether or not the business has been permanently closed.
+#' @return A data frame with 28 columns. Each row corresponds to one business.
+#' In addition to the fields provided by the business search, you also get
+#' opening hours, URLs of up to 3 photos, whether or not the business has been
+#' claimed by its owner, and whether or not the business has been permanently
+#' closed.
 #' @examples
 #' \donttest{
 #' ## Marked as don't test because an access token is needed
