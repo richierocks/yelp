@@ -17,7 +17,7 @@
 #' @importFrom purrr is_empty
 #' @export
 featured_event <- function(location = NULL, latitude = NULL, longitude = NULL,
-  locale = "en_US", access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA)) {
+  locale = Sys.getenv("YELP_LOCALE", "en_US"), access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA)) {
   assert_has_access_token(access_token)
   location <- parse_location(location)
   check_latitude(latitude)

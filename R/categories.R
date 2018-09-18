@@ -15,7 +15,7 @@
 #' }
 #' @importFrom purrr map_df
 #' @export
-categories <- function(alias, locale = "en_US",
+categories <- function(alias, locale = Sys.getenv("YELP_LOCALE", "en_US"),
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA)) {
   assert_has_access_token(access_token)
   locale <- parse_locale(locale)
