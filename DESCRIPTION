@@ -29,6 +29,7 @@ Collate:
     business-lookup.R
     business-match.R
     business-search.R
+    categories.R
     constants.R
     event-search.R
     featured-events.R
