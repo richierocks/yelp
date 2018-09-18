@@ -26,6 +26,7 @@
 #' If you don't get any results, try setting this to \code{"none"}.
 #' @param access_token A string giving an access token to authenticate the API
 #' call. See \code{\link{get_access_token}}.
+#' @return A data frame with 13 columns. Each row corresponds to one business.
 #' @references \url{https://www.yelp.com/developers/documentation/v3/business_match}
 #' @examples
 #' \donttest{
@@ -86,8 +87,8 @@ business_match <- function(name, city, state, country, address1 = NULL,
 simple_business_object_to_df_row <- function(business) {
   data_frame(
     id = business$id,
-    name = business$name,
     alias = business$alias,
+    name = business$name,
     latitude = business$coordinates$latitude,
     longitude = business$coordinates$longitude,
     address1 = null2empty(business$location$address1),

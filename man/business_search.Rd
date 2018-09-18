@@ -55,7 +55,7 @@ See \code{\link{SUPPORTED_BUSINESS_ATTRIBUTES}}.}
 call. See \code{\link{get_access_token}}.}
 }
 \value{
-A data frame of business results.
+A data frame with 24 columns. Each row corresponds to one business.
 }
 \description{
 Use the Yelp business search API to find businesses close to a give location.

@@ -29,6 +29,7 @@
 #' descending order.
 #' @param access_token A string giving an access token to authenticate the API
 #' call. See \code{\link{get_access_token}}.
+#' @return A data frame with 26 columns. Each row corresponds to one event.
 #' @examples
 #' \donttest{
 #' ## Marked as don't test because an access token is needed

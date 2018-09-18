@@ -17,6 +17,9 @@ featured_events(location = NULL, latitude = NULL, longitude = NULL,
 \item{access_token}{A string giving an access token to authenticate the API
 call. See \code{\link{get_access_token}}.}
 }
+\value{
+A data frame with 26 columns. Each row corresponds to one event.
+}
 \description{
 List the featured events for a location, as curated by the Yelp staff.
 }

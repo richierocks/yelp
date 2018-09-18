@@ -89,6 +89,7 @@ business_search <- function(term, location, latitude = NULL, longitude = NULL, r
 business_object_to_df_row <- function(business, detailed = FALSE) {
   business_data <- data_frame(
     id = business$id,
+    alias = business$alias,
     name = business$name,
     rating = business$rating,
     review_count = business$review_count,

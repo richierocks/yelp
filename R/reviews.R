@@ -16,9 +16,16 @@
 #' ## Marked as don't test because an access token is needed
 #' # First lookup businesses
 #' theaters_in_chicago <- business_search("theater", "chicago")
-#' # Examine the ID column to get the business ID
-#' theaters_in_chicago$id
-#' reviews_of_chicago_theater <- reviews("chicago-theatre-chicago")
+#' # Examine the first ID and alias
+#' theaters_in_chicago[1L, c("id", "alias")]
+#' # Get the reviews using the business ID
+#' reviews_of_chicago_theater_from_id <- reviews("qJ_iOBrjxU-unMbqRSBv9w")
+#' # ...or the alias
+#' reviews_of_chicago_theater_from_alias <- reviews("chicago-theatre-chicago")
+#' identical(
+#'   reviews_of_chicago_theater_from_id,
+#'   reviews_of_chicago_theater_from_alias
+#' )
 #' if(interactive())
 #'   View(reviews_of_chicago_theater) else str(reviews_of_chicago_theater)
 #' }

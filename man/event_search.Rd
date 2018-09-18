@@ -47,10 +47,14 @@ multiple searches).}
 \item{sort_on}{Should the return values be sorted by \code{"popularity"} or
 \code{"datetime_start"}?}
 
-\item{sort_by}{TODO}
+\item{sort_by}{Either \code{asc} for ascending order, or \code{desc} for
+descending order.}
 
 \item{access_token}{A string giving an access token to authenticate the API
 call. See \code{\link{get_access_token}}.}
+}
+\value{
+A data frame with 26 columns. Each row corresponds to one event.
 }
 \description{
 Use the Yelp event search API to find events near a given location and in

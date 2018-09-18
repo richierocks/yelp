@@ -18,10 +18,11 @@ for allowed values.}
 call. See \code{\link{get_access_token}}.}
 }
 \value{
-A data frame of detailed business information. In addition to the
-fields provided by the business search, you also get opening hours,
-URLs of up to 3 photos, whether or not the business has been claimed by
-its owner, and whether or not the business has been permanently closed.
+A data frame with 28 columns. Each row corresponds to one business.
+In addition to the fields provided by the business search, you also get
+opening hours, URLs of up to 3 photos, whether or not the business has been
+claimed by its owner, and whether or not the business has been permanently
+closed.
 }
 \description{
 Look up a business by Yelp ID
