@@ -1,4 +1,4 @@
-# Keeping this test for now, but it's flaky because the featured events are
+# Keeping this test for now, but it's falky because the featured events are
 # curated, and it's unclear if there will always be a featured event for any
 # given location
 
@@ -7,8 +7,10 @@ context("featured_event")
 old_token <- set_token()
 old_locale <- set_yelp_locale()
 
+an_event_id <- event_search("los angeles")$id[1L]
+
 test_results_have_correct_form(
-  featured_event("new york"),
+  event_lookup(an_event_id),
   c("id", "name", "category", "description", "is_free", "cost",
     "cost_max", "business_id", "event_site_url", "image_url", "tickets_url",
     "interested_count", "attending_count", "time_start", "time_end",
