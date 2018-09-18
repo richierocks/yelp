@@ -60,9 +60,17 @@ This access token can be passed into individual calls to the API, or you can sto
 
 Some features such as business match and event search require you to sign up for the Yelp Developer Beta program. You can do this from the [Manage App](https://www.yelp.com/developers/v3/manage_app) page.
 
+### Set your locale
+
+By default, the package assumes that you are in the USA, and uses the locale `en_US`. You can override this for the session using `set_yelp_locale()`, or premanently by setting an environment variable named `YELP_LOCALE`.
+
 ## Usage
 
 To search for businesses close to a specific location, call `business_search()` with a string giving a search term and either a string describing a location or numbers giving latitude and longitude.  The return value is a tibble (since it has a nicer print method for wider data frames) with one business per row.
+
+```{r, load_dplyr}
+suppressPackageStartupMessages(library(dplyr, quiet = TRUE))
+```
 
 ```{r, business_search}
 library(yelp)
@@ -127,10 +135,12 @@ library(tidytext)
 
 There are some other functions with more niche usage. 
 
-- `phone_search()` lets you search for a business by phone number. 
 - `autocomplete()` takes a search term, and returns some related search terms that Yelp understands.
+- `business_match()` provides a more targetted search for a business, when you know its name and rough address.
+- `event_search()` lets you search for events that are happening near a location.
+- `event_lookup()` returns details for a specific event given its Yelp ID.
+- `featured_event()` returns the Yelp-curated featured event for a location.
 - `food_delivery_search()` lets you find businesses that will deliver food to a given location.
+- `categories()` provides more information on the search category aliases.
+- `phone_search()` lets you search for a business by phone number. 
 
-## Not yet implemented
-
-Several parts of the API aren't yet implemented in this package. In particular, none of the events API is implemented. Business match doesn't work correctly.
