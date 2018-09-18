@@ -4,8 +4,8 @@
 \alias{business_lookup}
 \title{Look up a business by Yelp ID}
 \usage{
-business_lookup(yelp_business_id, locale = "en_US",
-  access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA))
+business_lookup(yelp_business_id, locale = Sys.getenv("YELP_LOCALE",
+  "en_US"), access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA))
 }
 \arguments{
 \item{yelp_business_id}{A string describing the Yelp ID of a business, as returned by

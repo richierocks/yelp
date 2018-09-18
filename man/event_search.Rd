@@ -7,8 +7,9 @@
 event_search(location = NULL, latitude = NULL, longitude = NULL,
   radius_m = 40000, datetime_start = Sys.time(),
   datetime_end = datetime_start + lubridate::ddays(7), is_free = NA,
-  categories = NULL, locale = "en_US", limit = 50L, offset = 0L,
-  sort_on = c("popularity", "time_start"), sort_by = c("desc", "asc"),
+  categories = NULL, locale = Sys.getenv("YELP_LOCALE", "en_US"),
+  limit = 50L, offset = 0L, sort_on = c("popularity", "time_start"),
+  sort_by = c("desc", "asc"),
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA))
 }
 \arguments{

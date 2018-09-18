@@ -4,7 +4,7 @@
 \alias{reviews}
 \title{Get reviews for a business}
 \usage{
-reviews(business_id, locale = "en_US",
+reviews(business_id, locale = Sys.getenv("YELP_LOCALE", "en_US"),
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA))
 }
 \arguments{

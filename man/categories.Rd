@@ -4,7 +4,7 @@
 \alias{categories}
 \title{Describe category alias}
 \usage{
-categories(alias, locale = "en_US",
+categories(alias, locale = Sys.getenv("YELP_LOCALE", "en_US"),
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA))
 }
 \arguments{

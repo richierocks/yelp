@@ -25,6 +25,7 @@ RoxygenNote: 6.1.0
 Collate:
     utils.R
     authentication.R
+    locale.R
     autocomplete.R
     business-lookup.R
     business-match.R
