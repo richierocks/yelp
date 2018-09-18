@@ -32,6 +32,7 @@ Collate:
     business-search.R
     categories.R
     constants.R
+    event-lookup.R
     event-search.R
     featured-events.R
     food-delivery-search.R

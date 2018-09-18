@@ -1,7 +1,9 @@
 #' Look up a business by Yelp ID
 #'
-#' @param yelp_business_id A string describing the Yelp ID of a business, as returned by
-#' \code{\link{business_search}}.
+#' Use the ID from a business search to get more details on that business.
+#'
+#' @param yelp_business_id A string describing the Yelp ID of a business, as
+#' returned by \code{\link{business_search}}.
 #' @param locale A string naming the locale. See \code{\link{SUPPORTED_LOCALES}}
 #' for allowed values.
 #' @param access_token A string giving an access token to authenticate the API

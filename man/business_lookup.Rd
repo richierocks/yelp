@@ -8,8 +8,8 @@ business_lookup(yelp_business_id, locale = get_yelp_locale(),
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA))
 }
 \arguments{
-\item{yelp_business_id}{A string describing the Yelp ID of a business, as returned by
-\code{\link{business_search}}.}
+\item{yelp_business_id}{A string describing the Yelp ID of a business, as
+returned by \code{\link{business_search}}.}
 
 \item{locale}{A string naming the locale. See \code{\link{SUPPORTED_LOCALES}}
 for allowed values.}
@@ -25,7 +25,7 @@ claimed by its owner, and whether or not the business has been permanently
 closed.
 }
 \description{
-Look up a business by Yelp ID
+Use the ID from a business search to get more details on that business.
 }
 \examples{
 \donttest{

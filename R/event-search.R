@@ -33,8 +33,8 @@
 #' @examples
 #' \donttest{
 #' ## Marked as don't test because an access token is needed
-#' events_on_broadway <- event_search("broadway, manhattan, new york")
-#' if(interactive()) View(events_on_broadway) else str(events_on_broadway)
+#' events_in_houston <- event_search("houston")
+#' if(interactive()) View(events_in_houston) else str(events_in_houston)
 #' }
 #' @importFrom purrr map_df
 #' @export
