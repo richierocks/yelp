@@ -16,9 +16,9 @@
 #' @export
 set_yelp_locale <- function(locale = "en_US") {
   old_locale <- get_yelp_locale()
-  on.exit(invisible(old_locale))
   locale <- parse_locale(locale)
   Sys.setenv(YELP_LOCALE = locale)
+  invisible(old_locale)
 }
 
 #' @rdname set_yelp_locale
