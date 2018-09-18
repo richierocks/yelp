@@ -1,8 +1,4 @@
-# Keeping this test for now, but it's falky because the featured events are
-# curated, and it's unclear if there will always be a featured event for any
-# given location
-
-context("featured_event")
+context("event_lookup")
 
 old_token <- set_token()
 old_locale <- set_yelp_locale()
