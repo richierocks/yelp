@@ -1,3 +1,5 @@
+context("autocomplete")
+
 old_token <- set_token()
 
 test_that(

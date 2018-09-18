@@ -16,18 +16,16 @@
 #' ## Marked as don't test because an access token is needed
 #' # First lookup businesses
 #' theaters_in_chicago <- business_search("theater", "chicago")
-#' # Examine the first ID and alias
-#' theaters_in_chicago[1L, c("id", "alias")]
 #' # Get the reviews using the business ID
-#' reviews_of_chicago_theater_from_id <- reviews("qJ_iOBrjxU-unMbqRSBv9w")
+#' reviews_of_chicago_theater_id <- reviews(theaters_in_chicago$id[1L])
 #' # ...or the alias
-#' reviews_of_chicago_theater_from_alias <- reviews("chicago-theatre-chicago")
+#' reviews_of_chicago_theater_alias <- reviews(theaters_in_chicago$alias[1L])
 #' identical(
-#'   reviews_of_chicago_theater_from_id,
-#'   reviews_of_chicago_theater_from_alias
+#'   reviews_of_chicago_theater_id,
+#'   reviews_of_chicago_theater_alias
 #' )
 #' if(interactive())
-#'   View(reviews_of_chicago_theater) else str(reviews_of_chicago_theater)
+#'   View(reviews_of_chicago_theater_id) else str(reviews_of_chicago_theater_id)
 #' }
 #' @importFrom assertive.types assert_is_a_string
 #' @importFrom purrr map_df

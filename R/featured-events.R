@@ -11,12 +11,12 @@
 #' @examples
 #' \donttest{
 #' ## Marked as don't test because an access token is needed
-#' the_only_show_in_town <- featured_events("broadway, manhattan, new york")
-#' if(interactive()) View(the_only_show_in_town) else str(the_only_show_in_town)
+#' the_main_event <- featured_event("san francisco")
+#' if(interactive()) View(the_main_event) else str(the_main_event)
 #' }
-#' @importFrom purrr map_df
+#' @importFrom purrr is_empty
 #' @export
-featured_events <- function(location = NULL, latitude = NULL, longitude = NULL,
+featured_event <- function(location = NULL, latitude = NULL, longitude = NULL,
   locale = "en_US", access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA)) {
   assert_has_access_token(access_token)
   location <- parse_location(location)
@@ -29,7 +29,13 @@ featured_events <- function(location = NULL, latitude = NULL, longitude = NULL,
     locale = locale, location = location,
     latitude = latitude, longitude = longitude
   )
-  # It appears that unlike the events endpoint, there is only ever
-  #  a single featured event
+  # It appears that unlike the events endpoint, there are only ever
+  # zero or one featured events
+  if(is_empty(results)) return(data_frame())
+  if(is.null(results$id)) {
+    # Defensive coding: should never be reached
+    # https://github.com/Yelp/yelp-fusion/issues/460
+    stop("Multiple featured events are not supported. Please file an issue!")
+  }
   event_to_df_row(results)
 }
