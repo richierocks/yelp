@@ -1,6 +1,7 @@
 context("autocomplete")
 
 old_token <- set_token()
+old_locale <- set_yelp_locale()
 
 test_that(
   "autocomplete() returns a list with 3 terms", {
@@ -20,4 +21,5 @@ test_that(
   )
 })
 
+set_yelp_locale(old_locale)
 unset_token(old_token)

@@ -1,6 +1,7 @@
 context("business_match")
 
 old_token <- set_token()
+old_locale <- set_yelp_locale()
 
 test_results_have_correct_form(
   business_match("AT&T", "manhattan", "NY", "US", "Thomas Street"), # Long Lines building
@@ -12,4 +13,5 @@ test_results_have_correct_form(
     "character", "character", "character")
 )
 
+set_yelp_locale(old_locale)
 unset_token(old_token)

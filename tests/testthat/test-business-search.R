@@ -1,6 +1,7 @@
 context("business_search")
 
 old_token <- set_token()
+old_locale <- set_yelp_locale()
 
 test_results_have_correct_form(
   business_search("tapas", "Madrid, Spain"),
@@ -16,4 +17,5 @@ test_results_have_correct_form(
     "character", "character", "character")
 )
 
+set_yelp_locale(old_locale)
 unset_token(old_token)

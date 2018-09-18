@@ -1,6 +1,7 @@
 context("phone_search")
 
 old_token <- set_token()
+old_locale <- set_yelp_locale()
 
 test_results_have_correct_form(
   phone_search("+12069052100"),
@@ -16,4 +17,5 @@ test_results_have_correct_form(
     "character", "character", "character")
 )
 
+set_yelp_locale(old_locale)
 unset_token(old_token)

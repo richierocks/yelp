@@ -5,6 +5,7 @@
 context("featured_event")
 
 old_token <- set_token()
+old_locale <- set_yelp_locale()
 
 test_results_have_correct_form(
   featured_event("new york"),
@@ -22,4 +23,5 @@ test_results_have_correct_form(
     "character")
 )
 
+set_yelp_locale(old_locale)
 unset_token(old_token)

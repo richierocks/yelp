@@ -1,6 +1,7 @@
 context("business_lookup")
 
 old_token <- set_token()
+old_locale <- set_yelp_locale()
 
 test_results_have_correct_form(
   business_lookup("g2IUVjeIwx5x6x9u1cLS6w"), # Empire State Building
@@ -18,4 +19,5 @@ test_results_have_correct_form(
     "list")
 )
 
+set_yelp_locale(old_locale)
 unset_token(old_token)

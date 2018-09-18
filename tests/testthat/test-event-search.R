@@ -1,6 +1,7 @@
 context("event_search")
 
 old_token <- set_token()
+old_locale <- set_yelp_locale()
 
 test_results_have_correct_form(
   event_search("camden, london", locale = "en_GB"),
@@ -18,4 +19,5 @@ test_results_have_correct_form(
     "character")
 )
 
+set_yelp_locale(old_locale)
 unset_token(old_token)
