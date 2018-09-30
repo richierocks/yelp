@@ -4,18 +4,18 @@
 \alias{reviews}
 \title{Get reviews for a business}
 \usage{
-reviews(business_id, locale = get_yelp_locale(),
+reviews(business, locale = get_yelp_locale(),
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA))
 }
 \arguments{
-\item{business_id}{A string denoting a Yelp business ID, as returned by
-the business search API.}
-
 \item{locale}{A string naming the locale. See \code{\link{SUPPORTED_LOCALES}}
 for allowed values.}
 
 \item{access_token}{A string giving an access token to authenticate the API
 call. See \code{\link{get_access_token}}.}
+
+\item{business_id}{A string denoting a Yelp business ID, as returned by
+the business search API.}
 }
 \value{
 A data frame with 6 columns. Each row corresponds to one review of the

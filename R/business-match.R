@@ -86,7 +86,7 @@ business_match <- function(name, city, state, country, address1 = NULL,
 
 simple_business_object_to_df_row <- function(business) {
   data_frame(
-    id = business$id,
+    business_id = business$id,
     alias = business$alias,
     name = business$name,
     latitude = business$coordinates$latitude,

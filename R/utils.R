@@ -51,6 +51,12 @@ to_unix_time <- function(x) {
   as.integer(as.POSIXct(x))
 }
 
+# Fix up ratings
+
+to_stars <- function(x) {
+  ordered(x, levels = seq.int(0, 5, 0.5))
+}
+
 # Check inputs ------------------------------------------------------------
 
 #' @importFrom assertive.numbers assert_all_are_in_closed_range
@@ -95,6 +101,21 @@ check_phone <- function(phone) {
   # Match START %R% PLUS %R% dgt(1, Inf) %R% END
   assert_all_are_matching_regex(phone, "^\\+\\d+$")
 }
+
+
+# Test types --------------------------------------------------------------
+
+#' Is the input a Yelp business?
+#'
+#' @param x An R variable.
+#' @return \code{TRUE} if the result is a data frame with a character column
+#' named \code{business_id}.
+is_yelp_business <- function(x) {
+  is_data_frame(x) &&
+    "business_id" %in% colnames(x) &&
+    class(x$business_id) == "character"
+}
+
 
 # Improve inputs ----------------------------------------------------------
 

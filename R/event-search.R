@@ -74,7 +74,7 @@ event_search <- function(location = NULL, latitude = NULL, longitude = NULL,
 #' @importFrom tibble data_frame
 event_to_df_row <- function(event) {
   data_frame(
-    id = event$id,
+    event_id = event$id,
     name = event$name,
     category = event$category,
     description = event$description,
