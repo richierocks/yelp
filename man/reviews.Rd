@@ -4,12 +4,13 @@
 \alias{reviews}
 \title{Get reviews for a business}
 \usage{
-reviews(business, locale = get_yelp_locale(),
+reviews(businesses, locale = get_yelp_locale(),
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA))
 }
 \arguments{
-\item{business}{A string denoting a Yelp business ID or alias, as returned by
-the business search API, or the data frame returned by that API endpoint.}
+\item{businesses}{A character vector describing the Yelp IDs of businesses,
+as returned by \code{\link{business_search}},  or the data frame returned by
+that API endpoint.}
 
 \item{locale}{A string naming the locale. See \code{\link{SUPPORTED_LOCALES}}
 for allowed values.}
@@ -24,13 +25,19 @@ specified business.
 \description{
 Get the Yelp reviews associated with a business ID.
 }
+\details{
+If you pass multiple business IDs (either with a character vector
+with length greater than one or a data frame with multiple rows), this will
+result in multiple calls to the API, which you need to bear in mind if your
+usage is limited.
+}
 \examples{
 \donttest{
 ## Marked as don't test because an access token is needed
 # First lookup businesses
 theaters_in_chicago <- business_search("theater", "chicago")
 # Get the reviews using the business ID
-reviews_of_chicago_theater_id <- reviews(theaters_in_chicago$id[1L])
+reviews_of_chicago_theater_id <- reviews(theaters_in_chicago$business_id[1L])
 # ...or the alias
 reviews_of_chicago_theater_alias <- reviews(theaters_in_chicago$alias[1L])
 identical(

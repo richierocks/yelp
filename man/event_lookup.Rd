@@ -8,17 +8,17 @@ event_lookup(yelp_event_id, locale = get_yelp_locale(),
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA))
 }
 \arguments{
-\item{yelp_event_id}{A string denoting a Yelp event ID, as returned by
-\code{\link{event_search}}.}
-
 \item{locale}{A string naming the locale. See \code{\link{SUPPORTED_LOCALES}}
 for allowed values.}
 
 \item{access_token}{A string giving an access token to authenticate the API
 call. See \code{\link{get_access_token}}.}
+
+\item{event_id}{A string denoting a Yelp event ID, as returned by
+\code{\link{event_search}}.}
 }
 \value{
-A data frame with 1 row and 26 columns.
+A data frame with 1 row and 28 columns.
 }
 \description{
 Use the ID from a business search to return only details for that business.

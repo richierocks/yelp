@@ -1,13 +1,13 @@
 #' Look up an event by Yelp ID
 #'
 #' Use the ID from a business search to return only details for that business.
-#' @param yelp_event_id A string denoting a Yelp event ID, as returned by
+#' @param event_id A string denoting a Yelp event ID, as returned by
 #' \code{\link{event_search}}.
 #' @param locale A string naming the locale. See \code{\link{SUPPORTED_LOCALES}}
 #' for allowed values.
 #' @param access_token A string giving an access token to authenticate the API
 #' call. See \code{\link{get_access_token}}.
-#' @return A data frame with 1 row and 26 columns.
+#' @return A data frame with 1 row and 28 columns.
 #' @examples
 #' \donttest{
 #' ## Marked as don't test because an access token is needed

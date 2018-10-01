@@ -55,7 +55,7 @@ descending order.}
 call. See \code{\link{get_access_token}}.}
 }
 \value{
-A data frame with 26 columns. Each row corresponds to one event.
+A data frame with 28 columns. Each row corresponds to one event.
 }
 \description{
 Use the Yelp event search API to find events near a given location and in
