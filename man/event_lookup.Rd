@@ -8,14 +8,15 @@ event_lookup(events, locale = get_yelp_locale(),
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA))
 }
 \arguments{
+\item{events}{A character vector describing the Yelp IDs of events,
+as returned by \code{\link{event_search}}, or the data frame returned by
+that API endpoint.}
+
 \item{locale}{A string naming the locale. See \code{\link{SUPPORTED_LOCALES}}
 for allowed values.}
 
 \item{access_token}{A string giving an access token to authenticate the API
 call. See \code{\link{get_access_token}}.}
-
-\item{event_id}{A string denoting a Yelp event ID, as returned by
-\code{\link{event_search}}.}
 }
 \value{
 A data frame with 1 row and 28 columns.

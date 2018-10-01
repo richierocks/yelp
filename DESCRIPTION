@@ -1,7 +1,7 @@
 Package: yelp
 Type: Package
 Title: Interface to the Yelp Fusion API
-Version: 0.0-2
+Version: 0.0-3
 Author: Richard Cotton
 Maintainer: Richard Cotton <richierocks@gmail.com>
 Description: Use the Yelp Fustion API to search for businesses near a given location.

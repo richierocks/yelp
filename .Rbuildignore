@@ -5,3 +5,5 @@
 CONTRIBUTING
 ^data-raw$
 .DS_store
+^appveyor\.yml$
+^cran-comments\.md$

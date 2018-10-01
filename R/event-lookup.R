@@ -1,8 +1,9 @@
 #' Look up an event by Yelp ID
 #'
 #' Use the ID from a business search to return only details for that business.
-#' @param event_id A string denoting a Yelp event ID, as returned by
-#' \code{\link{event_search}}.
+#' @param events A character vector describing the Yelp IDs of events,
+#' as returned by \code{\link{event_search}}, or the data frame returned by
+#' that API endpoint.
 #' @param locale A string naming the locale. See \code{\link{SUPPORTED_LOCALES}}
 #' for allowed values.
 #' @param access_token A string giving an access token to authenticate the API
