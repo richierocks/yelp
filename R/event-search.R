@@ -93,6 +93,8 @@ event_to_df_row <- function(event) {
     time_end = null2empty(event$time_end),
     is_canceled = event$is_canceled,
     is_official = event$is_official,
+    latitude = event$latitude,
+    longitude = event$longitude,
     address1 = event$location$address1,
     address2 = null2empty(event$location$address2),
     address3 = null2empty(event$location$address3),

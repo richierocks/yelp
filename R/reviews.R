@@ -2,8 +2,8 @@
 #'
 #' Get the Yelp reviews associated with a business ID.
 #'
-#' @param business_id A string denoting a Yelp business ID, as returned by
-#' the business search API.
+#' @param business A string denoting a Yelp business ID or alias, as returned by
+#' the business search API, or the data frame returned by that API endpoint.
 #' @param locale A string naming the locale. See \code{\link{SUPPORTED_LOCALES}}
 #' for allowed values.
 #' @param access_token A string giving an access token to authenticate the API

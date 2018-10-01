@@ -16,10 +16,31 @@ call_yelp_api <- function(endpoint, access_token, ...) {
     config = add_headers(Authorization = paste("bearer", access_token)),
     query = query
   )
+  handle_id_migration(response)
   stop_for_status(response)
   content(response, as = "parsed")
 }
 
+#' Deal with ID migration
+#'
+#' If duplicate businesses are merged, one ID redirects to the other.
+#' This manifests as an HTTP 301 code.
+#' @param response The result of a GET() call to the Yelp API.
+#' @references \url{https://www.yelp.com/developers/documentation/v3/business_reviews#response-business-migrated}
+#' @importFrom httr status_code
+#' @importFrom httr content
+#' @importFrom magrittr %$%
+handle_id_migration <- function(response) {
+  if(status_code(response) == 301) {
+    contents <- content(response, as = "parsed")
+    msg <- paste0(
+      contents$error$description,
+      "\nNew ID: ",
+      contents$error$new_business_id
+    )
+    stop(msg, call. = FALSE)
+  }
+}
 
 # Fixup responses ---------------------------------------------------------
 
@@ -111,7 +132,7 @@ check_phone <- function(phone) {
 #' @return \code{TRUE} if the result is a data frame with a character column
 #' named \code{business_id}.
 is_yelp_business <- function(x) {
-  is_data_frame(x) &&
+  is.data.frame(x) &&
     "business_id" %in% colnames(x) &&
     class(x$business_id) == "character"
 }
