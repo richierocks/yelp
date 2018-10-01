@@ -32,7 +32,8 @@ business_lookup <- function(businesses, locale = get_yelp_locale(),
     businesses <- businesses$business_id
   }
   if(length(businesses) > 1L) {
-    return(map_df(businesses, business_lookup, .id = "business_id"))
+    # business IDs includes' don't use .id arg
+    return(map_df(businesses, business_lookup))
   }
   assert_has_access_token(access_token)
   assert_is_a_string(businesses)

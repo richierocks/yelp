@@ -41,6 +41,7 @@ reviews <- function(businesses, locale = get_yelp_locale(),
     businesses <- businesses$business_id
   }
   if(length(businesses) > 1L) {
+    businesses <- setNames(businesses, businesses)
     return(map_df(businesses, reviews, .id = "business_id"))
   }
   assert_has_access_token(access_token)

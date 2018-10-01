@@ -121,8 +121,7 @@ five_stars_and_cheap <- salons_in_la %>%
 five_stars_and_cheap_details <- business_lookup(five_stars_and_cheap)
 glimpse(five_stars_and_cheap_details)
 #> Observations: 3
-#> Variables: 30
-#> $ business_id           <chr> "1", "2", "3"
+#> Variables: 29
 #> $ business_id           <chr> "yII2VaCD9MnKmNKqEzOY0w", "NMkt-I3OhC_bR...
 #> $ alias                 <chr> "briannas-beauty-salon-los-angeles-2", "...
 #> $ name                  <chr> "Brianna's Beauty Salon", "Hair by Laure...
@@ -196,7 +195,7 @@ five_stars_and_cheap_reviews <- reviews(five_stars_and_cheap)
 glimpse(five_stars_and_cheap_reviews)
 #> Observations: 9
 #> Variables: 8
-#> $ business_id    <chr> "1", "1", "1", "2", "2", "2", "3", "3", "3"
+#> $ business_id    <chr> "yII2VaCD9MnKmNKqEzOY0w", "yII2VaCD9MnKmNKqEzOY...
 #> $ review_id      <chr> "I31QLakCUD999rTygBTFDA", "XhjsOuc2tAJ21Lh3ypsJ...
 #> $ rating         <ord> 5, 4, 5, 5, 5, 5, 5, 5, 5
 #> $ text           <chr> "their work is so detailed and they take their ...
@@ -218,28 +217,28 @@ library(tidytext)
 )
 #> Joining, by = "word"
 #> # A tibble: 20 x 5
-#>    business_id review_id              rating word        sentiment
-#>    <chr>       <chr>                  <ord>  <chr>       <chr>    
-#>  1 1           I31QLakCUD999rTygBTFDA 5      work        positive 
-#>  2 1           I31QLakCUD999rTygBTFDA 5      like        positive 
-#>  3 1           XhjsOuc2tAJ21Lh3ypsJIQ 4      fast        positive 
-#>  4 1           XhjsOuc2tAJ21Lh3ypsJIQ 4      clean       positive 
-#>  5 1           XhjsOuc2tAJ21Lh3ypsJIQ 4      affordable  positive 
-#>  6 1           eSPWyeP6Tv5Whj0hvdNviw 5      recommended positive 
-#>  7 1           eSPWyeP6Tv5Whj0hvdNviw 5      impressed   positive 
-#>  8 1           eSPWyeP6Tv5Whj0hvdNviw 5      amazing     positive 
-#>  9 1           eSPWyeP6Tv5Whj0hvdNviw 5      work        positive 
-#> 10 2           QlYjqYsEQELBJmoNWEqtCw 5      promised    positive 
-#> 11 2           QlYjqYsEQELBJmoNWEqtCw 5      happy       positive 
-#> 12 2           mPy1Uan2-xxh8AXSv8BtoQ 5      best        positive 
-#> 13 2           3itCHdIXCnemcPtC9I674w 5      great       positive 
-#> 14 2           3itCHdIXCnemcPtC9I674w 5      polite      positive 
-#> 15 2           3itCHdIXCnemcPtC9I674w 5      nice        positive 
-#> 16 2           3itCHdIXCnemcPtC9I674w 5      loved       positive 
-#> 17 3           yGRC3iVbIXjYQ855ujm82g 5      love        positive 
-#> 18 3           yGRC3iVbIXjYQ855ujm82g 5      sweet       positive 
-#> 19 3           vBtH60Bd0t2QHsesPSPTwQ 5      amazing     positive 
-#> 20 3           vBtH60Bd0t2QHsesPSPTwQ 5      great       positive
+#>    business_id           review_id             rating word       sentiment
+#>    <chr>                 <chr>                 <ord>  <chr>      <chr>    
+#>  1 yII2VaCD9MnKmNKqEzOY… I31QLakCUD999rTygBTF… 5      work       positive 
+#>  2 yII2VaCD9MnKmNKqEzOY… I31QLakCUD999rTygBTF… 5      like       positive 
+#>  3 yII2VaCD9MnKmNKqEzOY… XhjsOuc2tAJ21Lh3ypsJ… 4      fast       positive 
+#>  4 yII2VaCD9MnKmNKqEzOY… XhjsOuc2tAJ21Lh3ypsJ… 4      clean      positive 
+#>  5 yII2VaCD9MnKmNKqEzOY… XhjsOuc2tAJ21Lh3ypsJ… 4      affordable positive 
+#>  6 yII2VaCD9MnKmNKqEzOY… eSPWyeP6Tv5Whj0hvdNv… 5      recommend… positive 
+#>  7 yII2VaCD9MnKmNKqEzOY… eSPWyeP6Tv5Whj0hvdNv… 5      impressed  positive 
+#>  8 yII2VaCD9MnKmNKqEzOY… eSPWyeP6Tv5Whj0hvdNv… 5      amazing    positive 
+#>  9 yII2VaCD9MnKmNKqEzOY… eSPWyeP6Tv5Whj0hvdNv… 5      work       positive 
+#> 10 NMkt-I3OhC_bRG-krPXp… QlYjqYsEQELBJmoNWEqt… 5      promised   positive 
+#> 11 NMkt-I3OhC_bRG-krPXp… QlYjqYsEQELBJmoNWEqt… 5      happy      positive 
+#> 12 NMkt-I3OhC_bRG-krPXp… mPy1Uan2-xxh8AXSv8Bt… 5      best       positive 
+#> 13 NMkt-I3OhC_bRG-krPXp… 3itCHdIXCnemcPtC9I67… 5      great      positive 
+#> 14 NMkt-I3OhC_bRG-krPXp… 3itCHdIXCnemcPtC9I67… 5      polite     positive 
+#> 15 NMkt-I3OhC_bRG-krPXp… 3itCHdIXCnemcPtC9I67… 5      nice       positive 
+#> 16 NMkt-I3OhC_bRG-krPXp… 3itCHdIXCnemcPtC9I67… 5      loved      positive 
+#> 17 rCxfVI-UQGzgUPkJDiC5… yGRC3iVbIXjYQ855ujm8… 5      love       positive 
+#> 18 rCxfVI-UQGzgUPkJDiC5… yGRC3iVbIXjYQ855ujm8… 5      sweet      positive 
+#> 19 rCxfVI-UQGzgUPkJDiC5… vBtH60Bd0t2QHsesPSPT… 5      amazing    positive 
+#> 20 rCxfVI-UQGzgUPkJDiC5… vBtH60Bd0t2QHsesPSPT… 5      great      positive
 ```
 
 There are some other functions with more niche usage.
