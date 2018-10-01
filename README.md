@@ -1,4 +1,6 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+[![Build status](https://ci.appveyor.com/api/projects/status/2jv8csk42679foc4?svg=true)](https://ci.appveyor.com/project/richierocks/yelp)
+
 yelp
 ====
 
