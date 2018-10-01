@@ -29,10 +29,10 @@
 business_lookup <- function(businesses, locale = get_yelp_locale(),
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA)) {
   if(is_yelp_business(businesses)) {
-    business <- businesses$business_id
+    businesses <- businesses$business_id
   }
   if(length(businesses) > 1L) {
-    return(map_dfr(businesses, business_lookup, .id = "business_id"))
+    return(map_df(businesses, business_lookup, .id = "business_id"))
   }
   assert_has_access_token(access_token)
   assert_is_a_string(businesses)

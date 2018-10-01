@@ -130,7 +130,7 @@ business_object_to_df_row <- function(business, detailed = FALSE) {
           end_time = open$end
         )
       }
-    ))
+    )) %>% setNames(business$name)
   }
   business_data
 }

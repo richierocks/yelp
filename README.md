@@ -61,31 +61,31 @@ salons_in_la <- business_search("beauty salon", "los angeles")
 glimpse(salons_in_la)
 #> Observations: 20
 #> Variables: 25
-#> $ id               <chr> "XNcjEN9M2kjChBaJioE3eQ", "yII2VaCD9MnKmNKqEz...
-#> $ alias            <chr> "margaritas-beauty-salon-los-angeles-3", "bri...
-#> $ name             <chr> "Margarita's Beauty Salon", "Brianna's Beauty...
-#> $ rating           <dbl> 3.5, 5.0, 4.5, 5.0, 5.0, 5.0, 4.0, 3.5, 5.0, ...
-#> $ review_count     <int> 24, 5, 7, 4, 92, 4, 7, 11, 9, 23, 7, 16, 297,...
-#> $ price            <chr> "$", "$", "$$", "$$", "$$", "$$", "$", "$", "...
-#> $ image_url        <chr> "https://s3-media2.fl.yelpcdn.com/bphoto/uXL5...
+#> $ business_id      <chr> "whbjQu04BvffC11CZfGEzA", "XNcjEN9M2kjChBaJio...
+#> $ alias            <chr> "magys-beauty-salon-los-angeles-2", "margarit...
+#> $ name             <chr> "Magys Beauty Salon", "Margarita's Beauty Sal...
+#> $ rating           <ord> 4.5, 3.5, 5, 5, 4.5, 5, 5, 5, 4, 3.5, 5, 5, 4...
+#> $ review_count     <int> 8, 23, 5, 48, 7, 4, 92, 4, 7, 11, 9, 9, 7, 24...
+#> $ price            <chr> "$$", "$", "$", "$$", "$$", "$$", "$$", "$$",...
+#> $ image_url        <chr> "https://s3-media4.fl.yelpcdn.com/bphoto/ZHK2...
 #> $ is_closed        <lgl> FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FAL...
-#> $ url              <chr> "https://www.yelp.com/biz/margaritas-beauty-s...
-#> $ category_aliases <list> ["hair", <"hair", "waxing", "eyelashservice"...
-#> $ category_titles  <list> ["Hair Salons", <"Hair Salons", "Waxing", "E...
-#> $ latitude         <dbl> 34.03502, 34.08803, 34.04836, 34.09760, 34.06...
-#> $ longitude        <dbl> -118.4387, -118.3090, -118.3430, -118.3652, -...
-#> $ distance_m       <dbl> 11200.409, 3156.545, 2464.888, 5687.579, 2641...
+#> $ url              <chr> "https://www.yelp.com/biz/magys-beauty-salon-...
+#> $ category_aliases <list> [<"hair", "hairremoval", "personalcare">, "h...
+#> $ category_titles  <list> [<"Hair Salons", "Hair Removal", "Personal C...
+#> $ latitude         <dbl> 34.21657, 34.03502, 34.08803, 34.04309, 34.04...
+#> $ longitude        <dbl> -118.3879, -118.4387, -118.3090, -118.4577, -...
+#> $ distance_m       <dbl> 18310.313, 11200.409, 3156.545, 11852.204, 24...
 #> $ transactions     <list> [<>, <>, <>, <>, <>, <>, <>, <>, <>, <>, <>,...
-#> $ address1         <chr> "2403 Sawtelle Blvd", "968 N Western Ave", "4...
-#> $ address2         <chr> "", "", "Ste B", "Ste B-200", "Fl 2", "Sola S...
-#> $ address3         <chr> "", "", "", "", "", "Ste 102, Studio 5", "", ...
+#> $ address1         <chr> "8031 Lankershim Blvd", "2403 Sawtelle Blvd",...
+#> $ address2         <chr> "", "", "", "", "Ste B", "Ste B-200", "Fl 2",...
+#> $ address3         <chr> "", "", "", "", "", "", "", "Ste 102, Studio ...
 #> $ city             <chr> "Los Angeles", "Los Angeles", "Los Angeles", ...
-#> $ zip_code         <chr> "90064", "90029", "90019", "90046", "90005", ...
+#> $ zip_code         <chr> "91605", "90064", "90029", "90025", "90019", ...
 #> $ state            <chr> "CA", "CA", "CA", "CA", "CA", "CA", "CA", "CA...
 #> $ country          <chr> "US", "US", "US", "US", "US", "US", "US", "US...
-#> $ display_address  <chr> "2403 Sawtelle Blvd, Los Angeles, CA 90064", ...
-#> $ phone            <chr> "+13104770119", "+13238484188", "+13239367830...
-#> $ display_phone    <chr> "(310) 477-0119", "(323) 848-4188", "(323) 93...
+#> $ display_address  <chr> "8031 Lankershim Blvd, Los Angeles, CA 91605"...
+#> $ phone            <chr> "+18187436944", "+13104770119", "+13238484188...
+#> $ display_phone    <chr> "(818) 743-6944", "(310) 477-0119", "(323) 84...
 ```
 
 The results include the longitude and latitude of each business, so you can use [*ggmap*](https://cran.r-project.org/web/packages/ggmap) to plot their locations.
@@ -96,7 +96,7 @@ library(magrittr)
 la <- salons_in_la %$%
   c(median(longitude), median(latitude))
 la_map <- get_map(la, zoom = 11)
-#> Source : https://maps.googleapis.com/maps/api/staticmap?center=34.062317,-118.308265&zoom=11&size=640x640&scale=2&maptype=terrain&language=en-EN
+#> Source : https://maps.googleapis.com/maps/api/staticmap?center=34.057281,-118.309928&zoom=11&size=640x640&scale=2&maptype=terrain&language=en-EN
 (map_plot_of_salons_in_la <- ggmap(la_map) + 
   geom_point(aes(longitude, latitude), data = salons_in_la)
 )
@@ -108,102 +108,138 @@ la_map <- get_map(la, zoom = 11)
 
 ![Map of Los Angeles, with businesses marked as points.](man/figures/README-ggmap-1.png)
 -->
-Once you have spotted an interesting business, make a note of the business ID from the `id` column as it is required as an argument for several of the other functions.
+You can use standard `dplyr` tools to filter for businesses that are interesting to you.
 
 ``` r
-arianna_hair_boutique_id <- salons_in_la %>% 
-  filter(name == "Arianna Hair Boutique") %>% 
-  pull(id)
+five_stars_and_cheap <- salons_in_la %>% 
+  filter(rating == 5, price == "$") 
 ```
 
-You can use the business ID with the `business_lookup()` to get more detailed information about that business, including opening hours.
+`business_lookup()` gives you more detailed information about businesses, including opening hours. It costs 1 API call per business, so do your filtering before you call it.
 
 ``` r
-arianna_hair_boutique_details <- business_lookup(arianna_hair_boutique_id)
-glimpse(arianna_hair_boutique_details)
-#> Observations: 1
-#> Variables: 29
-#> $ id                    <chr> "4gV99Gc24G3ZGOwZfwPh4g"
-#> $ alias                 <chr> "arianna-hair-boutique-los-angeles"
-#> $ name                  <chr> "Arianna Hair Boutique"
-#> $ rating                <dbl> 4.5
-#> $ review_count          <int> 297
-#> $ price                 <chr> "$$"
-#> $ image_url             <chr> "https://s3-media1.fl.yelpcdn.com/bphoto...
-#> $ is_closed             <lgl> FALSE
-#> $ url                   <chr> "https://www.yelp.com/biz/arianna-hair-b...
-#> $ category_aliases      <list> [<"hair", "eyelashservice", "othersalon...
-#> $ category_titles       <list> [<"Hair Salons", "Eyelash Service", "Na...
-#> $ latitude              <dbl> 34.0619
-#> $ longitude             <dbl> -118.2939
-#> $ distance_m            <dbl> NA
-#> $ transactions          <list> [<>]
-#> $ address1              <chr> "3287 Wilshire Blvd"
-#> $ address2              <chr> ""
-#> $ address3              <chr> ""
-#> $ city                  <chr> "Los Angeles"
-#> $ zip_code              <chr> "90010"
-#> $ state                 <chr> "CA"
-#> $ country               <chr> "US"
-#> $ display_address       <chr> "3287 Wilshire Blvd, Los Angeles, CA 90010"
-#> $ phone                 <chr> "+12137360481"
-#> $ display_phone         <chr> "(213) 736-0481"
-#> $ photos                <list> [["https://s3-media1.fl.yelpcdn.com/bph...
-#> $ is_claimed            <lgl> TRUE
-#> $ is_permanently_closed <lgl> FALSE
+five_stars_and_cheap_details <- business_lookup(five_stars_and_cheap)
+glimpse(five_stars_and_cheap_details)
+#> Observations: 3
+#> Variables: 30
+#> $ business_id           <chr> "1", "2", "3"
+#> $ business_id           <chr> "yII2VaCD9MnKmNKqEzOY0w", "NMkt-I3OhC_bR...
+#> $ alias                 <chr> "briannas-beauty-salon-los-angeles-2", "...
+#> $ name                  <chr> "Brianna's Beauty Salon", "Hair by Laure...
+#> $ rating                <ord> 5, 5, 5
+#> $ review_count          <int> 5, 9, 23
+#> $ price                 <chr> "$", "$", "$"
+#> $ image_url             <chr> "https://s3-media2.fl.yelpcdn.com/bphoto...
+#> $ is_closed             <lgl> FALSE, FALSE, FALSE
+#> $ url                   <chr> "https://www.yelp.com/biz/briannas-beaut...
+#> $ category_aliases      <list> [<"hair", "waxing", "eyelashservice">, ...
+#> $ category_titles       <list> [<"Hair Salons", "Waxing", "Eyelash Ser...
+#> $ latitude              <dbl> 34.08803, 33.95879, 34.11381
+#> $ longitude             <dbl> -118.3090, -118.3108, -118.2543
+#> $ distance_m            <dbl> NA, NA, NA
+#> $ transactions          <list> [<>, <>, <>]
+#> $ address1              <chr> "968 N Western Ave", "1848 W 87th St", "...
+#> $ address2              <chr> "", "", ""
+#> $ address3              <chr> "", "", ""
+#> $ city                  <chr> "Los Angeles", "Los Angeles", "Los Angeles"
+#> $ zip_code              <chr> "90029", "90047", "90039"
+#> $ state                 <chr> "CA", "CA", "CA"
+#> $ country               <chr> "US", "US", "US"
+#> $ display_address       <chr> "968 N Western Ave, Los Angeles, CA 9002...
+#> $ phone                 <chr> "+13238484188", "+12132558085", "+132366...
+#> $ display_phone         <chr> "(323) 848-4188", "(213) 255-8085", "(32...
+#> $ photos                <list> [["https://s3-media2.fl.yelpcdn.com/bph...
+#> $ is_claimed            <lgl> TRUE, TRUE, TRUE
+#> $ is_permanently_closed <lgl> FALSE, FALSE, FALSE
 #> $ opening_hours         <list> [<# A tibble: 7 x 4,   start_day start_...
-arianna_hair_boutique_details$opening_hours
+five_stars_and_cheap_details$opening_hours
 #> [[1]]
 #> # A tibble: 7 x 4
 #>   start_day start_time end_day   end_time
 #>   <chr>     <chr>      <chr>     <chr>   
-#> 1 Monday    1000       Monday    2200    
-#> 2 Tuesday   1000       Tuesday   2200    
-#> 3 Wednesday 1000       Wednesday 2200    
-#> 4 Thursday  1000       Thursday  2200    
-#> 5 Friday    1000       Friday    2200    
-#> 6 Saturday  1000       Saturday  1900    
-#> 7 Sunday    1200       Sunday    1800
+#> 1 Monday    0900       Monday    2100    
+#> 2 Tuesday   0900       Tuesday   2100    
+#> 3 Wednesday 0900       Wednesday 2100    
+#> 4 Thursday  0900       Thursday  2100    
+#> 5 Friday    0900       Friday    2100    
+#> 6 Saturday  0900       Saturday  2100    
+#> 7 Sunday    0900       Sunday    2100    
+#> 
+#> [[2]]
+#> # A tibble: 7 x 4
+#>   start_day start_time end_day   end_time
+#>   <chr>     <chr>      <chr>     <chr>   
+#> 1 Monday    0900       Monday    1900    
+#> 2 Tuesday   1800       Tuesday   2200    
+#> 3 Wednesday 1800       Wednesday 2200    
+#> 4 Thursday  1800       Thursday  2200    
+#> 5 Friday    1800       Friday    2200    
+#> 6 Saturday  1800       Saturday  2200    
+#> 7 Sunday    0900       Sunday    1900    
+#> 
+#> [[3]]
+#> # A tibble: 6 x 4
+#>   start_day start_time end_day   end_time
+#>   <chr>     <chr>      <chr>     <chr>   
+#> 1 Monday    0930       Monday    1830    
+#> 2 Tuesday   0930       Tuesday   1830    
+#> 3 Wednesday 0930       Wednesday 1830    
+#> 4 Thursday  0930       Thursday  1830    
+#> 5 Friday    0930       Friday    1830    
+#> 6 Saturday  0830       Saturday  1830
 ```
 
-You can also use `reviews()` to get reviews of that business.
+You can also use `reviews()` to get reviews of the businesses. Again, it costs 1 API call per business. Also, you are limited to 3 reviews per business, and the text of each is truncated. This is an API limitation, not a problem with this R package.
 
 ``` r
-arianna_hair_boutique_reviews <- reviews(arianna_hair_boutique_id)
-glimpse(arianna_hair_boutique_reviews)
-#> Observations: 3
-#> Variables: 7
-#> $ id             <chr> "tSpuDVsdpBbpw96eNe6EDw", "rtuIb6e1dtTq-wzY4pst...
-#> $ rating         <int> 5, 5, 5
-#> $ text           <chr> "I love this place. Not only is it walking dist...
-#> $ time_created   <chr> "2018-08-07 22:48:44", "2018-08-06 18:54:27", "...
-#> $ url            <chr> "https://www.yelp.com/biz/arianna-hair-boutique...
-#> $ user_image_url <chr> "https://s3-media4.fl.yelpcdn.com/photo/4EA-Nlq...
-#> $ user_name      <chr> "Mel D.", "Jess M.", "Nicole L."
+five_stars_and_cheap_reviews <- reviews(five_stars_and_cheap)
+glimpse(five_stars_and_cheap_reviews)
+#> Observations: 9
+#> Variables: 8
+#> $ business_id    <chr> "1", "1", "1", "2", "2", "2", "3", "3", "3"
+#> $ review_id      <chr> "I31QLakCUD999rTygBTFDA", "XhjsOuc2tAJ21Lh3ypsJ...
+#> $ rating         <ord> 5, 4, 5, 5, 5, 5, 5, 5, 5
+#> $ text           <chr> "their work is so detailed and they take their ...
+#> $ time_created   <chr> "2018-04-27 19:41:09", "2018-09-03 17:53:08", "...
+#> $ url            <chr> "https://www.yelp.com/biz/briannas-beauty-salon...
+#> $ user_image_url <chr> "https://s3-media1.fl.yelpcdn.com/photo/bkpdbSB...
+#> $ user_name      <chr> "Roy S.", "Rida Q.", "Sidney T.", "Keni G.", "B...
 ```
 
-These can be used with the [*tidytext*](https://cran.r-project.org/web/packages/tidytext) package to perform a sentiment analysis.
+In theory, these can be used with the [*tidytext*](https://cran.r-project.org/web/packages/tidytext) package to perform a sentiment analysis, though the limited amount of text is a problem.
 
 ``` r
 library(tidytext)
-(arianna_hair_boutique_sentiments <- arianna_hair_boutique_reviews %>% 
-  select(id, rating, text) %>% 
+(five_stars_and_cheap_sentiments <- five_stars_and_cheap_reviews %>% 
+  select(business_id, review_id, rating, text) %>% 
   unnest_tokens(word, text) %>% 
   anti_join(get_stopwords(), by = "word") %>% 
   inner_join(get_sentiments("bing"))
 )
 #> Joining, by = "word"
-#> # A tibble: 8 x 4
-#>   id                     rating word         sentiment
-#>   <chr>                   <int> <chr>        <chr>    
-#> 1 tSpuDVsdpBbpw96eNe6EDw      5 love         positive 
-#> 2 tSpuDVsdpBbpw96eNe6EDw      5 awesome      positive 
-#> 3 tSpuDVsdpBbpw96eNe6EDw      5 great        positive 
-#> 4 rtuIb6e1dtTq-wzY4pstjg      5 disappointed negative 
-#> 5 rtuIb6e1dtTq-wzY4pstjg      5 right        positive 
-#> 6 0N02C-h3XHFU9pra0BOYNg      5 hail         positive 
-#> 7 0N02C-h3XHFU9pra0BOYNg      5 wonder       positive 
-#> 8 0N02C-h3XHFU9pra0BOYNg      5 magic        positive
+#> # A tibble: 20 x 5
+#>    business_id review_id              rating word        sentiment
+#>    <chr>       <chr>                  <ord>  <chr>       <chr>    
+#>  1 1           I31QLakCUD999rTygBTFDA 5      work        positive 
+#>  2 1           I31QLakCUD999rTygBTFDA 5      like        positive 
+#>  3 1           XhjsOuc2tAJ21Lh3ypsJIQ 4      fast        positive 
+#>  4 1           XhjsOuc2tAJ21Lh3ypsJIQ 4      clean       positive 
+#>  5 1           XhjsOuc2tAJ21Lh3ypsJIQ 4      affordable  positive 
+#>  6 1           eSPWyeP6Tv5Whj0hvdNviw 5      recommended positive 
+#>  7 1           eSPWyeP6Tv5Whj0hvdNviw 5      impressed   positive 
+#>  8 1           eSPWyeP6Tv5Whj0hvdNviw 5      amazing     positive 
+#>  9 1           eSPWyeP6Tv5Whj0hvdNviw 5      work        positive 
+#> 10 2           QlYjqYsEQELBJmoNWEqtCw 5      promised    positive 
+#> 11 2           QlYjqYsEQELBJmoNWEqtCw 5      happy       positive 
+#> 12 2           mPy1Uan2-xxh8AXSv8BtoQ 5      best        positive 
+#> 13 2           3itCHdIXCnemcPtC9I674w 5      great       positive 
+#> 14 2           3itCHdIXCnemcPtC9I674w 5      polite      positive 
+#> 15 2           3itCHdIXCnemcPtC9I674w 5      nice        positive 
+#> 16 2           3itCHdIXCnemcPtC9I674w 5      loved       positive 
+#> 17 3           yGRC3iVbIXjYQ855ujm82g 5      love        positive 
+#> 18 3           yGRC3iVbIXjYQ855ujm82g 5      sweet       positive 
+#> 19 3           vBtH60Bd0t2QHsesPSPTwQ 5      amazing     positive 
+#> 20 3           vBtH60Bd0t2QHsesPSPTwQ 5      great       positive
 ```
 
 There are some other functions with more niche usage.

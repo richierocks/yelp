@@ -135,7 +135,7 @@ is_yelp_business <- function(x) {
   is.data.frame(x) &&
     "business_id" %in% colnames(x) &&
     class(x$business_id) == "character" &&
-    all(nchar(x$event_id) == 22L)
+    all(nchar(x$business_id) == 22L)
 }
 
 is_yelp_event <- function(x) {

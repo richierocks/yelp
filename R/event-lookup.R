@@ -19,7 +19,14 @@
 #' }
 #' @importFrom purrr is_empty
 #' @export
-event_lookup <- function(yelp_event_id, locale = get_yelp_locale(), access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA)) {
+event_lookup <- function(events, locale = get_yelp_locale(),
+  access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA)) {
+  if(is_yelp_business(events)) {
+    events <- events$business_id
+  }
+  if(length(events) > 1L) {
+    return(map_df(events, event_lookup, .id = "event_id"))
+  }
   assert_has_access_token(access_token)
   assert_is_a_string(yelp_event_id)
   locale <- parse_locale(locale)

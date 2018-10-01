@@ -4,7 +4,7 @@
 \alias{event_lookup}
 \title{Look up an event by Yelp ID}
 \usage{
-event_lookup(yelp_event_id, locale = get_yelp_locale(),
+event_lookup(events, locale = get_yelp_locale(),
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA))
 }
 \arguments{

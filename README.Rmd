@@ -97,36 +97,39 @@ la_map <- get_map(la, zoom = 11)
 ![Map of Los Angeles, with businesses marked as points.](man/figures/README-ggmap-1.png)
 -->
 
-Once you have spotted an interesting business, make a note of the business ID from the `id` column as it is required as an argument for several of the other functions.
+You can use standard `dplyr` tools to filter for businesses that are interesting to you.
 
 
 ```{r, business_id}
-arianna_hair_boutique_id <- salons_in_la %>% 
-  filter(name == "Arianna Hair Boutique") %>% 
-  pull(id)
+five_stars_and_cheap <- salons_in_la %>% 
+  filter(rating == 5, price == "$") 
 ```
 
-You can use the business ID with the `business_lookup()` to get more detailed information about that business, including opening hours.
+`business_lookup()` gives you more detailed information about businesses, including opening hours. It costs 1 API call per business, so do your
+filtering before you call it.
 
 ```{r, business_lookup}
-arianna_hair_boutique_details <- business_lookup(arianna_hair_boutique_id)
-glimpse(arianna_hair_boutique_details)
-arianna_hair_boutique_details$opening_hours
+five_stars_and_cheap_details <- business_lookup(five_stars_and_cheap)
+glimpse(five_stars_and_cheap_details)
+five_stars_and_cheap_details$opening_hours
 ```
 
-You can also use `reviews()` to get reviews of that business.
+You can also use `reviews()` to get reviews of the businesses. Again, it costs
+1 API call per business. Also, you are limited to 3 reviews per business, and
+the text of each is truncated. This is an API limitation, not a problem with 
+this R package.
 
 ```{r, reviews}
-arianna_hair_boutique_reviews <- reviews(arianna_hair_boutique_id)
-glimpse(arianna_hair_boutique_reviews)
+five_stars_and_cheap_reviews <- reviews(five_stars_and_cheap)
+glimpse(five_stars_and_cheap_reviews)
 ```
 
-These can be used with the [*tidytext*](https://cran.r-project.org/web/packages/tidytext) package to perform a sentiment analysis.
+In theory, these can be used with the [*tidytext*](https://cran.r-project.org/web/packages/tidytext) package to perform a sentiment analysis, though the limited amount of text is a problem.
 
 ```{r, sentiment}
 library(tidytext)
-(arianna_hair_boutique_sentiments <- arianna_hair_boutique_reviews %>% 
-  select(id, rating, text) %>% 
+(five_stars_and_cheap_sentiments <- five_stars_and_cheap_reviews %>% 
+  select(business_id, review_id, rating, text) %>% 
   unnest_tokens(word, text) %>% 
   anti_join(get_stopwords(), by = "word") %>% 
   inner_join(get_sentiments("bing"))

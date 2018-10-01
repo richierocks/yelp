@@ -4,19 +4,19 @@
 \alias{business_lookup}
 \title{Look up a business by Yelp ID}
 \usage{
-business_lookup(business, locale = get_yelp_locale(),
+business_lookup(businesses, locale = get_yelp_locale(),
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA))
 }
 \arguments{
+\item{businesses}{A character vector describing the Yelp IDs of businesses,
+as returned by \code{\link{business_search}},  or the data frame returned by
+that API endpoint.}
+
 \item{locale}{A string naming the locale. See \code{\link{SUPPORTED_LOCALES}}
 for allowed values.}
 
 \item{access_token}{A string giving an access token to authenticate the API
 call. See \code{\link{get_access_token}}.}
-
-\item{businesses}{A character vector describing the Yelp IDs of businesses,
-as returned by \code{\link{business_search}},  or the data frame returned by
-that API endpoint.}
 }
 \value{
 A data frame with 28 columns. Each row corresponds to one business.
