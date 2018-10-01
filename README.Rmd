@@ -68,9 +68,6 @@ By default, the package assumes that you are in the USA, and uses the locale `en
 
 To search for businesses close to a specific location, call `business_search()` with a string giving a search term and either a string describing a location or numbers giving latitude and longitude.  The return value is a tibble (since it has a nicer print method for wider data frames) with one business per row.
 
-```{r, load_dplyr}
-suppressPackageStartupMessages(library(dplyr, quiet = TRUE))
-```
 
 ```{r, business_search}
 library(yelp)
@@ -100,7 +97,7 @@ la_map <- get_map(la, zoom = 11)
 You can use standard `dplyr` tools to filter for businesses that are interesting to you.
 
 
-```{r, business_id}
+```{r, filter}
 five_stars_and_cheap <- salons_in_la %>% 
   filter(rating == 5, price == "$") 
 ```
@@ -136,11 +133,17 @@ library(tidytext)
 )
 ```
 
+Yelp also provide information on events. Call `event_search()` to see them.
+
+```{r, event_search}
+events_in_la <- event_search("los angeles")
+glimpse(events_in_la)
+```
+
 There are some other functions with more niche usage. 
 
 - `autocomplete()` takes a search term, and returns some related search terms that Yelp understands.
 - `business_match()` provides a more targetted search for a business, when you know its name and rough address.
-- `event_search()` lets you search for events that are happening near a location.
 - `event_lookup()` returns details for a specific event given its Yelp ID.
 - `featured_event()` returns the Yelp-curated featured event for a location.
 - `food_delivery_search()` lets you find businesses that will deliver food to a given location.

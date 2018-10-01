@@ -21,17 +21,17 @@
 #' @export
 event_lookup <- function(events, locale = get_yelp_locale(),
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA)) {
-  if(is_yelp_business(events)) {
-    events <- events$business_id
+  if(is_yelp_event(events)) {
+    events <- events$event_id
   }
   if(length(events) > 1L) {
     return(map_df(events, event_lookup, .id = "event_id"))
   }
   assert_has_access_token(access_token)
-  assert_is_a_string(yelp_event_id)
+  assert_is_a_string(events)
   locale <- parse_locale(locale)
   results <- call_yelp_api(
-    paste0("events/", yelp_event_id),
+    paste0("events/", events),
     access_token,
     locale = locale
   )
