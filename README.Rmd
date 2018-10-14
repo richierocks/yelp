@@ -24,6 +24,7 @@ for(pkg in c("yelp", "magrittr", "dplyr", "ggmap", "tidytext")) {
 ggmap::register_google(Sys.getenv("GOOGLE_MAPS_API_KEY"), "standard")
 ```
 
+[![Travis Build Status](https://travis-ci.org/richierocks/yelp.svg?branch=master)](https://travis-ci.org/richierocks/yelp)
 [![Build status](https://ci.appveyor.com/api/projects/status/2jv8csk42679foc4?svg=true)](https://ci.appveyor.com/project/richierocks/yelp)
 
 
