@@ -55,8 +55,8 @@ event_search <- function(location = NULL, latitude = NULL, longitude = NULL,
   locale <- parse_locale(locale)
   check_limit(limit)
   check_offset(offset)
-  sort_by <- match.arg(sort_by)
-  sort_on <- match.arg(sort_on)
+  sort_by <- match_arg(sort_by)
+  sort_on <- match_arg(sort_on)
   categories <- parse_categories(categories)
   is_free <- parse_is_free(is_free)
   results <- call_yelp_api(

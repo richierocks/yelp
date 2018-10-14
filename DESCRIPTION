@@ -9,6 +9,7 @@ License: Unlimited
 Encoding: UTF-8
 LazyData: true
 Imports:
+    assertive.base,
     assertive.numbers,
     assertive.sets,
     assertive.strings,
@@ -18,7 +19,8 @@ Imports:
     magrittr,
     purrr,
     stats,
-    tibble
+    tibble,
+    utils
 Suggests: 
     testthat
 RoxygenNote: 6.1.0

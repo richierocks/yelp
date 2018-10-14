@@ -178,7 +178,7 @@ parse_country_state <- function(country, state) {
   assert_is_a_string(state)
   state <- toupper(state)
   # Need to check in form "country-state", but return individual components
-  country_state <- match.arg(paste(country, state, sep = "-"), ISO_3166_2_CODES)
+  country_state <- match_arg(paste(country, state, sep = "-"), ISO_3166_2_CODES)
   strsplit(country_state, split = "-")[[1]] %>%
     setNames(c("country", "state")) %>%
     as.list()
@@ -194,7 +194,7 @@ parse_is_free <- function(is_free) {
 }
 
 parse_locale <- function(locale) {
-  match.arg(locale, SUPPORTED_LOCALES)
+  match_arg(locale, SUPPORTED_LOCALES)
 }
 
 parse_location <- function(location) {
@@ -217,3 +217,41 @@ parse_radius_m <- function(radius_m) {
   radius_m <- as.integer(radius_m)
   assert_all_are_in_closed_range(radius_m, 0, 40000)
 }
+
+
+# better error for match.arg ----------------------------------------------
+
+#' @importFrom utils adist
+find_nearest_string <- function(x, choices) {
+  scores <- adist(x, choices, ignore.case = TRUE, partial = TRUE)
+  choices[which.min(scores)]
+}
+
+get_arg_default <- function(xname) {
+  # Adapted from match.arg()
+  parent_fn_index <- sys.parent(2)
+  formal_args <- formals(sys.function(parent_fn_index))
+  eval(formal_args[[xname]], sys.frame(parent_fn_index))
+}
+
+#' @importFrom assertive.base get_name_in_parent
+match_arg <- function(x, choices = NULL) {
+  xname <- get_name_in_parent(x)
+  if(is.null(choices)) {
+    choices <- get_arg_default(xname)
+  }
+  tryCatch(
+    match.arg(x, choices),
+    error = function(e) {
+      stop(
+        sprintf('%s\nDid you mean `%s = "%s"`?',
+          e$message,
+          xname,
+          find_nearest_string(x, choices)
+        ),
+        call. = FALSE
+      )
+    }
+  )
+}
+

@@ -21,7 +21,7 @@ categories <- function(alias, locale = get_yelp_locale(),
   access_token = Sys.getenv("YELP_ACCESS_TOKEN", NA)) {
   assert_has_access_token(access_token)
   locale <- parse_locale(locale)
-  alias <- match.arg(alias, SUPPORTED_CATEGORY_ALIASES)
+  alias <- match_arg(alias, SUPPORTED_CATEGORY_ALIASES)
   results <- call_yelp_api(
     paste0("categories/", alias),
     access_token,
