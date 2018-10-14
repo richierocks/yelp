@@ -23,5 +23,15 @@ test_results_have_correct_form(
   )
 )
 
+test_that(
+  "event lookup works with search result input", {
+    n_events <- 2L
+    search_results <- event_search("tokyo", locale = "ja_JP", limit = n_events)
+    actual <- event_lookup(search_results)
+    expect_s3_class(actual, "data.frame")
+    expect_identical(nrow(actual), n_events)
+  }
+)
+
 set_yelp_locale(old_locale)
 unset_token(old_token)

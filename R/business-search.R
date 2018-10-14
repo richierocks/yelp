@@ -56,7 +56,7 @@ business_search <- function(term, location, latitude = NULL, longitude = NULL, r
   categories <- parse_categories(categories)
   locale <- parse_locale(locale)
   check_limit(limit)
-  sort_by <- match.arg(sort_by)
+  sort_by <- match_arg(sort_by)
   price <- parse_price(price)
   if(!is.null(open_at)) {
     open_now <- NULL

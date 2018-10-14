@@ -71,7 +71,7 @@ business_match <- function(name, city, state, country, address1 = NULL,
   if(!is.null(yelp_business_id)) {
     assert_is_a_string(yelp_business_id)
   }
-  match_threshold <- match.arg(match_threshold)
+  match_threshold <- match_arg(match_threshold)
   results <- call_yelp_api(
     "businesses/matches",
     access_token,

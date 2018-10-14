@@ -19,5 +19,15 @@ test_results_have_correct_form(
     "list")
 )
 
+test_that(
+  "business lookup works with search result input", {
+    n_businesses <- 2L
+    search_results <- business_search("museum", "paris", locale = "fr_FR", limit = n_businesses)
+    actual <- business_lookup(search_results)
+    expect_s3_class(actual, "data.frame")
+    expect_identical(nrow(actual), n_businesses)
+  }
+)
+
 set_yelp_locale(old_locale)
 unset_token(old_token)
