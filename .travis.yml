@@ -3,3 +3,8 @@
 language: R
 sudo: false
 cache: packages
+dist: trusty
+matrix:
+  include:
+  - r: devel
+  - r: release
