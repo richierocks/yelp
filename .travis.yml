@@ -8,3 +8,4 @@ matrix:
   include:
   - r: devel
   - r: release
+r_github_packages: cran/ISOcodes

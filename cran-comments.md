@@ -5,6 +5,7 @@ First release.
 ## Test Environments
 
 * Local macOS Sierra, R-release
+* R-hub, various platforms
 * AppVeyor + Windows Server 2012, R-devel
 * TravisCI + Ubuntu 14.04, R-devel & R-release
 
