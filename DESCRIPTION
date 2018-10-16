@@ -4,7 +4,9 @@ Title: Interface to the Yelp Fusion API
 Version: 0.0-3
 Author: Richard Cotton
 Maintainer: Richard Cotton <richierocks@gmail.com>
-Description: Use the Yelp Fustion API to search for businesses near a given location.
+Description: Use the Yelp Fusion API (https://www.yelp.com/developers/documentation/v3) to search for businesses and events near a given location. 
+URL: https://github.com/richierocks/yelp
+BugReports: https://github.com/richierocks/yelp/issues
 License: Unlimited
 Encoding: UTF-8
 LazyData: true
